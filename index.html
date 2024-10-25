@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mihir Chauhan</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon/favicon-48x48.png" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg" />
+    <link rel="shortcut icon" href="favicon/favicon.ico" />
+    <link rel="apple-touch-icon" sizes="180x180" href="facicon/apple-touch-icon.png" />
+    <link rel="manifest" href="facicon/site.webmanifest" />
+    <script defer src="script.js"></script>
+    <script defer src="app.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Roboto+Flex:opsz,wght@8..144,100..1000&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Poppins:wght@600&display=swap" rel="stylesheet">
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script type="text/javascript">
+        (function() {
+            // https://dashboard.emailjs.com/admin/account
+            emailjs.init({
+              publicKey: "GhFtq6Okk97dn7Uf5",
+            });
+        })();
+    </script>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#blog">Blog</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <section id="hero">
+        <div class="hero-content">
+            <img src="Images/mihir.jpg" alt="Profile Picture" class="profile-pic">
+            <h1>Hi! I'm Mihir</h1>
+            <h1>Welcome to My Portfolio</h1>
+            <p>I'm a Data Scientist passionate about Exploring data’s hidden patterns through machine learning and deep learning to unlock smarter solutions.. Let's explore my work!</p>
+            <br>
+            <a href="#about" class="hero-button">Learn More</a>
+        </div>
+    </section>
+
+    <section id="about" class="hidden">
+        <h1>About Me</h1>
+        <p>Hi, I'm a data scientist with a passion for data analysis, machine learning, and visualization. I specialize in Python, R, SQL, and data-driven problem-solving. Whether it's building predictive models or generating insightful visualizations, I'm always eager to collaborate on innovative projects.</p>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2019 - B.E. in Computer Engineering</h3>
+                <p>Graduated with honors from Mumbai University, focusing on Machine Learning and Data Science.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2023 - MS in Data Science</h3>
+                <p>Pursuing a Master's degree at University of Colorado Boulder, specializing in AI, Neural Networks, and Cybersecurity.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="hidden">
+        <h1 style="text-align: center;">Skills</h1>
+        <ul class="skills-grid">
+            <li class="logo hidden">
+                <img src="images/python.svg" alt="Python">
+                <p>Python</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/data-visualization.svg" alt="Data Visualization">
+                <p>Data Visualization</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/Machine-learning.svg" alt="Machine Learning">
+                <p>Machine Learning</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/neural-networks.svg" alt="Neural Networks">
+                <p>Neural Networks</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/sql.svg" alt="SQL & Databases">
+                <p>SQL & Databases</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/sklearn.svg" alt="Scikit Learn">
+                <p>Scikit Learn</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/pandas.svg" alt="TensorFlow">
+                <p>TensorFlow</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/numpy.svg" alt="Numpy">
+                <p>Numpy</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/github.svg" alt="Github">
+                <p>Github</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/google-cloud.svg" alt="Google Cloud">
+                <p>Google Cloud</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/azure.svg" alt="Azure">
+                <p>Azure</p>
+            </li>
+            <li class="logo hidden">
+                <img src="images/r.svg" alt="R Programming">
+                <p>R</p>
+            </li>
+        </ul>
+    </section>
+    
+    <section id="projects" class="hidden">
+        <h1 style="text-align: center;"> Projects</h1>
+        <div class="projects-grid">
+            <div class="project">
+                <div class="project-content">
+                    <img src="images/Yoga.jpg" alt="Project 1 screenshot">
+                    <div class="project-text">
+                        <h2>Yoga Pose Estimation</h2>
+                        <p>A pose detection model using Feedforward Neural Networks (FNN) and Google MoveNet Thunder, achieving 96% accuracy.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-content reverse">
+                    <img src="images/sign-language.jpg" alt="Project 2 screenshot">
+                    <div class="project-text">
+                        <h2>Sign Language Recognition</h2>
+                        <p>Created an LSTM-based model to translate sign language gestures into text, improving accessibility for the hearing impaired.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-content">
+                    <img src="images/football-lineup.jpg" alt="Project 3 screenshot">
+                    <div class="project-text">
+                        <h2>Football Lineup Optimization</h2>
+                        <p>Developed a football lineup analysis system to suggest optimal strategies based on opponent playstyles using player data.</p>
+                        <a href="#" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="hidden">
+        <h1>Experience</h1>
+        <div class="experience-card">
+            <h2>Data Science Intern - CodSoft</h2>
+            <p>August 2023 - September 2023</p>
+            <ul>
+                <li>Developed a model with 94% accuracy to forecast sales trends using historical data, emphasizing data preprocessing and model evaluation.</li>
+                <li>Created a personalized recommendation system using collaborative filtering techniques and cosine similarity, improving efficiency by 14%.</li>
+                <li>Analyzed passenger data to predict survival rates with 95% accuracy , applying logistic regression and decision tree algorithms.</li>
+            </ul>
+        </div>
+    </section>
+
+    <section id="blog" class="hidden">
+        <h1>Blog</h1>
+        <p>Check out my latest articles on Medium, where I write about Data Science, Machine Learning, and AI trends:</p>
+        <div class="blog-navigation">
+            <div id="blog-grid">
+                <div class="blog-post left"><a href="https://medium.com/@deadeye0702">Exploring Neural Networks for Pose Detection</a></div>
+                <div class="blog-post center"><a href="https://medium.com/@deadeye0702">How Data Science is Changing Football Analytics</a></div>
+                <div class="blog-post right"><a href="https://medium.com/@deadeye0702">Introduction to Cybersecurity in Data Science</a></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="hidden">
+        <h1>Contact</h1>
+        <form id="contact-form" onsubmit="SendMail(); return false;">
+            <input type="text" id="name" name="name" placeholder="Your Name" required>
+            <input type="email" id="email" name="email" placeholder="Your Email" required>
+            <textarea id="message" name="message" placeholder="Your Message" required></textarea>
+            <button type="submit">Send Message</button>
+        </form>
+    </section>
+
+    <footer class="hidden">
+        <p>Connect with me on social media:</p>
+        <ul>
+            <li><a href="https://www.instagram.com/_mihir__chauhan_/" target=”_blank”><img src="Images/instagram.png" alt="Instagram"></a></li>
+            <li><a href="https://www.linkedin.com/in/mihirchauhan10/" target=”_blank”><img src="Images/linkedin.png" alt="LinkedIn"></a></li>
+            <li><a href="https://github.com/Mihirchauhan0709" target=”_blank”><img src="Images/github.png" alt="GitHub"></a></li>
+            <li><a href="https://medium.com/@deadeye0702" target=”_blank”><img src="Images/medium.png" alt="Medium"></a></li>
+        </ul>
+    </footer>
+</body>
+</html>
