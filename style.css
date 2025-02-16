@@ -78,6 +78,46 @@ nav ul li a:hover {
 }
 
 /* Hero Section */
+
+/* Typewriter effect */
+.typewriter {
+    overflow: hidden;
+    border-right: .15em solid var(--white-color);
+    white-space: nowrap;
+    margin: 0 auto;
+    letter-spacing: .15em;
+    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
+}
+
+@keyframes typing {
+    from { width: 0 }
+    to { width: 100% }
+}
+
+@keyframes blink-caret {
+    from, to { border-color: transparent }
+    50% { border-color: var(--white-color); }
+}
+
+/* Social icons */
+.social-icons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top:1.5rem;
+}
+
+.social-icons img {
+    width: 24px;
+    height: 24px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.social-icons img:hover {
+    transform: scale(1.5);
+}
+
+
 #hero {
     background: var(--primary-color);
     color: var(--white-color);
@@ -478,6 +518,9 @@ footer ul li img {
 footer ul li img:hover {
     transform: scale(1.5);
 }
+
+
+
 
 /* Media Queries */
 @media (max-width: 1024px) {

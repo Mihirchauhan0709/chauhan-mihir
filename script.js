@@ -78,8 +78,11 @@ function SendMail() {
         from_name: document.getElementById("name").value,
         from_email: document.getElementById("email").value,
         message: document.getElementById("message").value
-    }
-    emailjs.send("service_692e32d", "template_n3h2m8o", params).then(function (res){
-        alert("Sent!" + res.status);
-    })
+    };
+    document.getElementById("form-status").innerHTML = "Sending...";
+    emailjs.send("service_692e32d", "template_n3h2m8o", params).then(function (res) {
+        document.getElementById("form-status").innerHTML = "Message sent successfully!";
+    }).catch(function (error) {
+        document.getElementById("form-status").innerHTML = "There was an error sending your message. Please try again later.";
+    });
 }

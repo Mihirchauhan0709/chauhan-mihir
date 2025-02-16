@@ -42,12 +42,18 @@
     
     <section id="hero">
         <div class="hero-content">
-            <img src="Images/mihir.jpg" alt="Profile Picture" class="profile-pic">
+            <img src="Images/mihir.jpg" alt="Profile Picture" class="profile-pic" loading="lazy">
             <h1>Hi! I'm Mihir</h1>
-            <h1>Welcome to My Portfolio</h1>
-            <p>I'm a Data Scientist passionate about Exploring data’s hidden patterns through machine learning and deep learning to unlock smarter solutions.. Let's explore my work!</p>
+            <h1 class="typewriter">Welcome to My Portfolio</h1>
+            <p>I'm a Data Scientist passionate about exploring data’s hidden patterns through machine learning and deep learning to unlock smarter solutions. Let's explore my work!</p>
             <br>
             <a href="#about" class="hero-button">Learn More</a>
+            <div class="social-icons">
+                <a href="https://www.instagram.com/_mihir__chauhan_/" target="_blank"><img src="Images/instagram.png" alt="Instagram" loading="lazy"></a>
+                <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank"><img src="Images/linkedin.png" alt="LinkedIn" loading="lazy"></a>
+                <a href="https://github.com/Mihirchauhan0709" target="_blank"><img src="Images/github.png" alt="GitHub" loading="lazy"></a>
+                <a href="https://medium.com/@deadeye0702" target="_blank"><img src="Images/medium.png" alt="Medium" loading="lazy"></a>
+            </div>
         </div>
     </section>
 
@@ -129,7 +135,7 @@
                     <div class="project-text">
                         <h2>Yoga Pose Estimation</h2>
                         <p>A pose detection model using Feedforward Neural Networks (FNN) and Google MoveNet Thunder, achieving 96% accuracy.</p>
-                        <a href="#" class="project-link">View Project</a>
+                        <a href="https://journals.stmjournals.com/joosdt/article=2024/view=161704/" target="_blank" class="project-link">View Project </a>
                     </div>
                 </div>
             </div>
@@ -139,6 +145,26 @@
                     <div class="project-text">
                         <h2>Sign Language Recognition</h2>
                         <p>Created an LSTM-based model to translate sign language gestures into text, improving accessibility for the hearing impaired.</p>
+                        <a href="https://github.com/Mihirchauhan0709/Sign-language-recognition" target="_blank" class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <div class="project">
+                <div class="project-content">
+                    <img src="Images/football-lineup.jpg" alt="Project 3 screenshot">
+                    <div class="project-text">
+                        <h2>Football Lineup Optimization</h2>
+                        <p>Developed a football lineup analysis system to suggest optimal strategies based on opponent playstyles using player data.</p>
+                        <a href="https://mihirchauhan0709.github.io/Data_mining_Project/index.html" target="_blank"  class="project-link">View Project</a>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="project">
+                <div class="project-content">
+                    <img src="Images/football-lineup.jpg" alt="Project 3 screenshot">
+                    <div class="project-text">
+                        <h2>Football Lineup Optimization</h2>
+                        <p>Developed a football lineup analysis system to suggest optimal strategies based on opponent playstyles using player data.</p>
                         <a href="#" class="project-link">View Project</a>
                     </div>
                 </div>
@@ -152,7 +178,7 @@
                         <a href="#" class="project-link">View Project</a>
                     </div>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 
@@ -173,6 +199,7 @@
         <h1>Blog</h1>
         <p>Check out my latest articles on Medium, where I write about Data Science, Machine Learning, and AI trends:</p>
         <div class="blog-navigation">
+            <!-- <button id="left-arrow" class="arrow">&lt;</button> -->
             <div id="blog-grid">
                 <div class="blog-post left"><a href="https://medium.com/@deadeye0702">Exploring Neural Networks for Pose Detection</a></div>
                 <div class="blog-post center"><a href="https://medium.com/@deadeye0702">How Data Science is Changing Football Analytics</a></div>
@@ -188,6 +215,7 @@
             <input type="email" id="email" name="email" placeholder="Your Email" required>
             <textarea id="message" name="message" placeholder="Your Message" required></textarea>
             <button type="submit">Send Message</button>
+            <div id="form-status"></div>
         </form>
     </section>
 
