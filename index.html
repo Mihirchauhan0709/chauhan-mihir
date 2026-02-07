@@ -1,92 +1,85 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mihir - Data Scientist & ML Engineer</title>
-    <meta name="description" content="Data Scientist passionate about transforming data into actionable insights through machine learning and AI.">
+    <title>Mihir Chauhan - Data Scientist & AI/ML Engineer</title>
+    <meta name="description" content="Data Science graduate student at CU Boulder specializing in end-to-end AI systems, LLM pipelines, and cloud-native infrastructure. Building production AI solutions from data pipelines to deployment.">
+    <meta name="keywords" content="Data Science, Machine Learning, AI, LLM, Python, Cloud, AWS, NLP, Engineer">
+    <meta name="author" content="Mihir Chauhan">
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mihir Chauhan - Data Scientist & AI Engineer">
+    <meta property="og:description" content="Building end-to-end AI systems: from data pipelines to deployed products">
+    <meta property="og:url" content="https://mihirchauhan0709.github.io/chauhan-mihir/">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mihir Chauhan - Data Scientist & AI Engineer">
+    <meta name="twitter:description" content="Building end-to-end AI systems: from data pipelines to deployed products">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
+    <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
+    <link rel="shortcut icon" href="favicon/favicon.ico">
+    <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
+    <link rel="manifest" href="favicon/site.webmanifest">
+    
+    <!-- Styles & Scripts -->
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
+    
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
             emailjs.init({
-              publicKey: "GhFtq6Okk97dn7Uf5", // Replace with your actual public key
+              publicKey: "GhFtq6Okk97dn7Uf5",
             });
         })();
     </script>
 </head>
 <body>
+    <!-- Custom Cursor -->
+    <div class="cursor-dot" id="cursor-dot"></div>
+    <div class="cursor-outline" id="cursor-outline"></div>
+    
+    <!-- Particle Background -->
+    <canvas id="particle-canvas" class="particle-canvas"></canvas>
+    
+    <!-- Scroll Progress Bar -->
+    <div class="scroll-progress" id="scroll-progress"></div>
+    
     <!-- Theme Toggle -->
-    <div class="theme-toggle">
-        <button id="theme-toggle" aria-label="Toggle theme">
-            <i class="fas fa-moon"></i>
-        </button>
-    </div>
-
-    <!-- Palette Selector -->
-    <div class="palette-selector">
-        <button id="palette-toggle" aria-label="Change color palette">
-            <i class="fas fa-palette"></i>
-        </button>
-        <div class="palette-dropdown" id="palette-dropdown">
-            <div class="palette-option" data-palette="default">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #6366f1, #06b6d4);"></div>
-                <span>Modern Indigo</span>
-            </div>
-            <div class="palette-option" data-palette="minimalist">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #374151, #6b7280);"></div>
-                <span>Minimalist</span>
-            </div>
-            <div class="palette-option" data-palette="tech-blue">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #2563eb, #f59e0b);"></div>
-                <span>Tech Blue</span>
-            </div>
-            <div class="palette-option" data-palette="creative">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #ec4899, #f97316);"></div>
-                <span>Creative</span>
-            </div>
-            <div class="palette-option" data-palette="soft">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #f59e0b, #ec4899);"></div>
-                <span>Soft</span>
-            </div>
-            <div class="palette-option" data-palette="nature">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #059669, #d97706);"></div>
-                <span>Nature</span>
-            </div>
-            <div class="palette-option" data-palette="corporate">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #1e40af, #dc2626);"></div>
-                <span>Corporate</span>
-            </div>
-            <div class="palette-option" data-palette="purple">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #7c3aed, #06b6d4);"></div>
-                <span>Purple</span>
-            </div>
-            <div class="palette-option" data-palette="sunset">
-                <div class="palette-preview" style="background: linear-gradient(45deg, #ea580c, #ec4899);"></div>
-                <span>Sunset</span>
-            </div>
-        </div>
-    </div>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Toggle theme">
+        <i class="fas fa-moon"></i>
+    </button>
 
     <!-- Navigation -->
-    <nav class="navbar">
+    <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <!-- <div class="nav-logo">
-                <a href="#home">Mihir Chauhan  </a>
-            </div> -->
-            <ul class="nav-menu">
+            <div class="nav-logo">
+                <a href="#home">MC</a>
+            </div>
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
                 <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
                 <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#publications" class="nav-link">Publications</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
                 <li><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            <div class="hamburger">
+            <div class="hamburger" id="hamburger">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
@@ -96,28 +89,50 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
+        <div class="hero-gradient"></div>
         <div class="hero-container">
             <div class="hero-content">
                 <div class="hero-text">
-                    <h1 class="hero-title">
-                        <span class="greeting">Hello, I'm</span>
-                        <span class="name">Mihir Chauhan</span>
+                    <div class="hero-greeting">Hello, I'm</div>
+                    <h1 class="hero-name">
+                        <span class="name-text">Mihir Chauhan</span>
                     </h1>
-                    <p class="hero-subtitle">Data Scientist & ML Engineer</p>
-                    <p class="hero-description">
-                        Transforming data into actionable insights through machine learning, 
-                        AI, and innovative problem-solving approaches.
-                    </p>
+                    <div class="hero-role">
+                        <span class="role-text">Data Scientist &</span>
+                        <span class="role-text">AI/ML Engineer</span>
+                    </div>
+                    <p class="hero-tagline" id="hero-tagline"></p>
                     <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">View My Work</a>
-                        <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+                        <a href="#projects" class="btn btn-primary">
+                            <span>View My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Get In Touch</span>
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                    <div class="hero-social">
+                        <a href="https://github.com/Mihirchauhan0709" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <!-- <a href="https://mihirchauhan0709.github.io/chauhan-mihir/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
+                            <i class="fas fa-globe"></i> -->
+                        </a>
                     </div>
                 </div>
                 <div class="hero-image">
-                    <img src="Images/mihir.jpg" alt="Mihir - Data Scientist" class="profile-image">
+                    <div class="image-wrapper">
+                        <div class="image-glow"></div>
+                        <img src="Images/mihir.jpg" alt="Mihir Chauhan - Data Scientist" class="profile-image">
+                    </div>
                 </div>
             </div>
             <div class="scroll-indicator">
+                <span>Scroll to explore</span>
                 <div class="scroll-arrow"></div>
             </div>
         </div>
@@ -127,76 +142,48 @@
     <section id="about" class="section">
         <div class="container">
             <div class="section-header">
+                <span class="section-label">Get to know me</span>
                 <h2 class="section-title">About Me</h2>
-                <p class="section-subtitle">Get to know me better</p>
             </div>
             <div class="about-content">
-                <div class="about-text">
-                    <p>
-                        I am a Data Scientist with a deep passion for architecting and deploying full-stack AI solutions that deliver tangible business value. My experience is defined by taking end-to-end ownership of complex problems and engineering robust, intelligent systems from the ground up.
-                    </p>
-                    <p>
-                        At my internship with Kobeyo, I built the company's core automated data engine. This wasn't just a script; it was a <strong>self-improving pipeline featuring a custom BERT model with an MLOps retraining loop</strong>, designed for long-term accuracy and scalability. I have also independently built and deployed full-stack AI applications using modern tools like RAG, LangChain, and FastAPI, demonstrating my ability to rapidly turn an idea into a functional product.
-                    </p>
-                    <p>
-                        My superpower is translating complex business needs into resilient, scalable, and intelligent software. I thrive on ownership and am seeking a challenging role where I can build impactful AI products from concept to deployment.
-                    </p>
-                </div>
-                <div class="about-stats">
-                    <div class="stat-item">
-                    <span class="stat-number">100%</span>
-                    <span class="stat-label">Project Ownership</span>
+                <div class="about-main">
+                    <div class="about-card glass-card">
+                        <div class="about-text">
+                            <p class="lead-text">
+                                I am <strong>Mihir Chauhan</strong>, a Data Science graduate student at CU Boulder with industry and research experience building end-to-end AI systems.
+                            </p>
+                            <p>
+                                My work spans applied machine learning, LLM-driven pipelines, data engineering, and cloud-native infrastructure. I have built production-style platforms like <strong>CloudSense</strong> (AI code review automation) and an <strong>AI Interview Coach</strong>, and I have also worked on clinical NLP and LLM infographic generation as a Research Intern at CU Anschutz.
+                            </p>
+                            <p>
+                                I enjoy shipping practical AI solutions and communicating results clearly to both technical and non-technical audiences. My superpower is taking full ownership of projects and turning complex ideas into scalable, intelligent systems.
+                            </p>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                    <span class="stat-number">2</span>
-                    <span class="stat-label">Advanced AI Models Deployed (RAG & BERT)</span>
+                    <div class="about-info">
+                        <div class="info-card glass-card">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Location</h4>
+                                <p>Boulder, Colorado</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-card">
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>Education</h4>
+                                <p>MS Data Science, CU Boulder (May 2026)</p>
+                            </div>
+                        </div>
+                        <div class="info-card glass-card">
+                            <i class="fas fa-code"></i>
+                            <div>
+                                <h4>Specialization</h4>
+                                <p>AI/ML & Cloud Infrastructure</p>
+                            </div>
+                        </div>
                     </div>
-                    <div class="stat-item">
-                    <span class="stat-number">1</span>
-                    <span class="stat-label">Automated Core Business Process</span>
-                    </div>
-                    </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Skills & Technologies</h2>
-                <p class="section-subtitle">Technologies I work with</p>
-            </div>
-            <div class="skills-container">
-                <div class="skills-category">
-                    <h3>Programming & Databases</h3>
-                    <div class="skills-grid" id="programming-skills"></div>
                 </div>
-                <div class="skills-category">
-                    <h3>AI & Machine Learning</h3>
-                    <div class="skills-grid" id="ml-skills"></div>
-                </div>
-                <div class="skills-category">
-                    <h3>Data & DevOps</h3>
-                    <div class="skills-grid" id="cloud-skills"></div>
-                </div>
-                <div class="skills-category">
-                    <h3>Data Visualization</h3>
-                    <div class="skills-grid" id="visualization-skills"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-header">
-                <h2 class="section-title">Featured Projects</h2>
-                <p class="section-subtitle">Some of my recent work</p>
-            </div>
-            <div class="projects-grid" id="projects-container">
-                <!-- Projects will be dynamically loaded -->
             </div>
         </div>
     </section>
@@ -205,11 +192,122 @@
     <section id="experience" class="section">
         <div class="container">
             <div class="section-header">
+                <span class="section-label">My professional journey</span>
                 <h2 class="section-title">Experience</h2>
-                <p class="section-subtitle">My professional journey</p>
             </div>
             <div class="timeline" id="experience-timeline">
-                <!-- Experience will be dynamically loaded -->
+                <!-- Experience items will be dynamically loaded -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Featured work</span>
+                <h2 class="section-title">Projects</h2>
+            </div>
+            
+            <!-- Featured Projects -->
+            <div class="projects-section">
+                <h3 class="projects-category-title">Featured Projects</h3>
+                <div class="projects-grid" id="featured-projects">
+                    <!-- Featured projects will be dynamically loaded -->
+                </div>
+            </div>
+            
+            <!-- Additional Projects -->
+            <div class="projects-section">
+                <h3 class="projects-category-title">Additional Projects</h3>
+                <div class="projects-grid additional-projects" id="additional-projects">
+                    <!-- Additional projects will be dynamically loaded -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">Research & Publications</span>
+                <h2 class="section-title">Publications</h2>
+            </div>
+            <div class="publications-grid">
+                <article class="publication-card glass-card">
+                    <div class="publication-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div class="publication-content">
+                        <h3 class="publication-title">Yoga Pose Detection and Correction</h3>
+                        <p class="publication-journal">Journal of Open Source Development and Technology (JOOSDT)</p>
+                        <p class="publication-description">
+                            Research paper detailing a pose detection model using Feedforward Neural Networks and Google MoveNet Thunder, achieving 96.5% accuracy across 12 yoga poses.
+                        </p>
+                        <a href="https://journals.stmjournals.com/joosdt/article=2024/view=161704/" 
+                           class="publication-link" 
+                           target="_blank" 
+                           rel="noopener noreferrer">
+                            <span>Read Paper</span>
+                            <i class="fas fa-external-link-alt"></i>
+                        </a>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="section">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-label">What I work with</span>
+                <h2 class="section-title">Skills & Technologies</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-code"></i>
+                        <h3>Languages</h3>
+                    </div>
+                    <div class="skills-grid" id="languages-skills"></div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-brain"></i>
+                        <h3>ML / AI</h3>
+                    </div>
+                    <div class="skills-grid" id="ml-skills"></div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-chart-bar"></i>
+                        <h3>Data & Visualization</h3>
+                    </div>
+                    <div class="skills-grid" id="data-skills"></div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-database"></i>
+                        <h3>Databases & Tools</h3>
+                    </div>
+                    <div class="skills-grid" id="database-skills"></div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-cloud"></i>
+                        <h3>Cloud & DevOps</h3>
+                    </div>
+                    <div class="skills-grid" id="cloud-skills"></div>
+                </div>
+                <div class="skill-category glass-card">
+                    <div class="skill-category-header">
+                        <i class="fas fa-laptop-code"></i>
+                        <h3>Web Development</h3>
+                    </div>
+                    <div class="skills-grid" id="web-skills"></div>
+                </div>
             </div>
         </div>
     </section>
@@ -218,48 +316,63 @@
     <section id="contact" class="section">
         <div class="container">
             <div class="section-header">
+                <span class="section-label">Let's connect</span>
                 <h2 class="section-title">Get In Touch</h2>
-                <p class="section-subtitle">Let's work together</p>
             </div>
             <div class="contact-content">
                 <div class="contact-info">
-                    <div class="contact-item">
-                        <i class="fas fa-envelope"></i>
-                        <div>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-details">
                             <h3>Email</h3>
-                            <p>mihirchauhan951@gmail.com</p>
+                            <a href="mailto:mihirchauhan951@gmail.com">mihirchauhan951@gmail.com</a>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-map-marker-alt"></i>
-                        <div>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <a href="tel:+17208135491">+1 720-813-5491</a>
+                        </div>
+                    </div>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-details">
                             <h3>Location</h3>
                             <p>Boulder, Colorado</p>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <i class="fas fa-graduation-cap"></i>
-                        <div>
-                            <h3>Education</h3>
-                            <p>MS Data Science, CU Boulder</p>
+                    <div class="contact-card glass-card">
+                        <div class="contact-icon">
+                            <i class="fab fa-linkedin"></i>
+                        </div>
+                        <div class="contact-details">
+                            <h3>LinkedIn</h3>
+                            <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
                         </div>
                     </div>
                 </div>
-                <form id="contact-form" class="contact-form">
+                <form id="contact-form" class="contact-form glass-card">
+                    <h3 class="form-title">Send me a message</h3>
                     <div class="form-group">
-                        <input type="text" id="name" name="name" required>
-                        <label for="name">Your Name</label>
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required placeholder="Your name">
                     </div>
                     <div class="form-group">
-                        <input type="email" id="email" name="email" required>
-                        <label for="email">Your Email</label>
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
                     </div>
                     <div class="form-group">
-                        <textarea id="message" name="message" required></textarea>
-                        <label for="message">Your Message</label>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" required placeholder="Your message..." rows="5"></textarea>
                     </div>
-                    <div id="form-status" class="form-status"></div>
-                    <button type="submit" class="btn btn-primary">
+                    <button type="submit" class="btn btn-primary btn-submit">
                         <span>Send Message</span>
                         <i class="fas fa-paper-plane"></i>
                     </button>
@@ -273,33 +386,62 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>Mihir Chauhan</h3>
-                    <p>Data Scientist passionate about AI and machine learning</p>
-                </div>
-                <div class="footer-section">
-                    <h3>Connect</h3>
-                    <div class="social-links">
-                        <a href="https://github.com/Mihirchauhan0709" target="https://github.com/Mihirchauhan0709" aria-label="GitHub">
+                    <div class="footer-logo">MC</div>
+                    <p>Building end-to-end AI systems from data pipelines to deployed products.</p>
+                    <div class="footer-social">
+                        <a href="https://github.com/Mihirchauhan0709" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                             <i class="fab fa-github"></i>
                         </a>
-                        <a href="https://www.linkedin.com/in/mihirchauhan10/" target="https://www.linkedin.com/in/mihirchauhan10/" aria-label="LinkedIn">
+                        <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
                             <i class="fab fa-linkedin"></i>
                         </a>
-                        <a href="https://www.instagram.com/_mihir__chauhan_/#" target="_blank" aria-label="Instagram">
-                            <i class="fab fa-instagram"></i>
+                        <a href="https://mihirchauhan0709.github.io/chauhan-mihir/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
+                            <i class="fas fa-globe"></i>
                         </a>
                     </div>
                 </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#about">About</a></li>
+                        <li><a href="#experience">Experience</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="#publications">Publications</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact</h4>
+                    <ul class="footer-contact">
+                        <li>
+                            <i class="fas fa-envelope"></i>
+                            <a href="mailto:mihirchauhan951@gmail.com">mihirchauhan951@gmail.com</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-phone"></i>
+                            <a href="tel:+17208135491">+1 720-813-5491</a>
+                        </li>
+                        <li>
+                            <i class="fas fa-map-marker-alt"></i>
+                            <span>Boulder, CO</span>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Mihir Chauhan. All rights reserved.</p>
+                <p>&copy; 2026 Mihir Chauhan. All rights reserved.</p>
+                <p>Designed with <i class="fas fa-heart"></i> and built with modern web technologies</p>
             </div>
         </div>
     </footer>
 
     <!-- Loading Screen -->
     <div class="loading-screen" id="loading-screen">
-        <div class="loader"></div>
+        <div class="loader">
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-ring"></div>
+            <div class="loader-text">Loading...</div>
+        </div>
     </div>
 </body>
 </html>
