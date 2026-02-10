@@ -725,6 +725,33 @@ body {
     font-weight: 600;
 }
 
+.resume-download-link {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    color: var(--primary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all var(--transition-base);
+    padding: var(--spacing-sm) var(--spacing-md);
+    border-radius: var(--radius-md);
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+}
+
+.resume-download-link:hover {
+    background: var(--primary-color);
+    color: var(--text-white);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.resume-download-link i {
+    font-size: var(--font-size-sm);
+    color: inherit;
+}
+
 /* ===== EXPERIENCE TIMELINE ===== */
 .timeline {
     position: relative;
@@ -1523,6 +1550,33 @@ body {
     .image-wrapper {
         max-width: 250px;
     }
+    
+    .back-to-top {
+        bottom: 20px;
+        right: 20px;
+        width: 48px;
+        height: 48px;
+        font-size: var(--font-size-lg);
+    }
+    
+    .currently-learning {
+        padding: var(--spacing-xl);
+    }
+    
+    .learning-header h3 {
+        font-size: var(--font-size-lg);
+    }
+    
+    .hero-buttons {
+        flex-direction: column;
+        gap: var(--spacing-md);
+        width: 100%;
+    }
+    
+    .hero-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
 }
 
 /* ===== UTILITY CLASSES ===== */
@@ -1539,4 +1593,100 @@ body {
 
 .visible {
     display: block !important;
+}
+
+/* ===== BACK TO TOP BUTTON ===== */
+.back-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 56px;
+    height: 56px;
+    border-radius: var(--radius-full);
+    background: var(--gradient-primary);
+    color: var(--text-white);
+    border: none;
+    cursor: pointer;
+    z-index: var(--z-fixed);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-base);
+    box-shadow: var(--shadow-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--font-size-xl);
+}
+
+.back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.back-to-top:hover {
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: var(--shadow-xl), var(--glow);
+}
+
+.back-to-top:active {
+    transform: translateY(-2px) scale(0.98);
+}
+
+/* ===== CURRENTLY LEARNING SECTION ===== */
+.currently-learning {
+    margin-top: var(--spacing-3xl);
+    padding: var(--spacing-2xl);
+}
+
+.learning-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-xl);
+}
+
+.learning-header i {
+    font-size: var(--font-size-2xl);
+    color: var(--primary-color);
+}
+
+.learning-header h3 {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.learning-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-md);
+}
+
+.learning-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--spacing-sm);
+    padding: var(--spacing-md) var(--spacing-lg);
+    background: var(--gradient-accent);
+    color: var(--text-white);
+    border-radius: var(--radius-full);
+    font-size: var(--font-size-sm);
+    font-weight: 600;
+    box-shadow: var(--shadow-md);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.learning-tag i {
+    font-size: var(--font-size-base);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        box-shadow: var(--shadow-md);
+    }
+    50% {
+        box-shadow: var(--shadow-lg), 0 0 20px rgba(79, 172, 254, 0.4);
+    }
 }

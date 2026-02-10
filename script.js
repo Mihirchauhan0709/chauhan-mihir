@@ -120,7 +120,16 @@ const portfolioData = {
         databases: ['MongoDB', 'PostgreSQL', 'Redis', 'GitHub', 'Linux', 'R Studio', 'Weka'],
         cloud: ['AWS', 'Google Cloud', 'Microsoft Azure', 'Docker', 'Terraform'],
         web: ['HTML', 'CSS', 'Node.js', 'React', 'FastAPI']
-    }
+    },
+    
+    // Currently Learning
+    currentlyLearning: [
+        { name: 'Kubernetes', icon: 'fas fa-dharmachakra' },
+        { name: 'MLOps', icon: 'fas fa-robot' },
+        { name: 'AI Workflows', icon: 'fas fa-diagram-project' },
+        { name: 'AI Coding Tools', icon: 'fas fa-brain' },
+        { name: 'LangGraph', icon: 'fas fa-project-diagram' }
+    ]
 };
 
 // ===== UTILITY FUNCTIONS =====
@@ -143,6 +152,30 @@ const utils = {
         return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
     }
 };
+
+// ===== BACK TO TOP BUTTON =====
+class BackToTop {
+    constructor() {
+        this.button = document.getElementById('back-to-top');
+        if (this.button) {
+            this.init();
+        }
+    }
+    
+    init() {
+        window.addEventListener('scroll', utils.debounce(() => {
+            if (window.scrollY > 500) {
+                this.button.classList.add('visible');
+            } else {
+                this.button.classList.remove('visible');
+            }
+        }, 100));
+        
+        this.button.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    }
+}
 
 // ===== THEME MANAGER =====
 class ThemeManager {
@@ -455,6 +488,7 @@ class ContentLoader {
         this.loadProjects();
         this.loadExperience();
         this.loadSkills();
+        this.loadCurrentlyLearning();
     }
     
     loadProjects() {
@@ -536,6 +570,18 @@ class ContentLoader {
         if (container) {
             container.innerHTML = skills.map(skill => 
                 `<span class="skill-item">${skill}</span>`
+            ).join('');
+        }
+    }
+    
+    loadCurrentlyLearning() {
+        const container = document.getElementById('learning-tags');
+        if (container) {
+            container.innerHTML = portfolioData.currentlyLearning.map(item => 
+                `<span class="learning-tag">
+                    <i class="${item.icon}"></i>
+                    ${item.name}
+                </span>`
             ).join('');
         }
     }
@@ -737,6 +783,7 @@ class PortfolioApp {
         this.card3DEffect = new Card3DEffect();
         this.contactFormManager = new ContactFormManager();
         this.loadingManager = new LoadingManager();
+        this.backToTop = new BackToTop();
         
         // Start typing animation after a delay
         setTimeout(() => {
@@ -751,6 +798,7 @@ class PortfolioApp {
         console.log('🚀 Portfolio loaded successfully!');
         console.log('💎 Built with glassmorphism design and modern animations');
         console.log('🎨 Theme: ' + (localStorage.getItem('theme') || 'light'));
+        console.log('✨ New features: Resume Download, Back to Top, Currently Learning');
     }
 }
 
