@@ -84,31 +84,43 @@ const portfolioData = {
         }
     ],
     
-    // Experience
+    // Experience (chronological: most recent first)
     experience: [
         {
             title: 'Research Intern',
             company: 'CU Anschutz, LARK Lab (Department of Biomedical Informatics)',
             date: 'Jan 2026 - Present',
-            description: 'Working on clinical NLP and LLM-driven systems. Built pipelines for HIV infographic generation using LLM prompting workflows. Exploring bias-mitigation considerations in AI outputs. Prototyped improved infographic pipeline using HTML-first generation and conversion to SVG for layout consistency.'
-        },
-        {
-            title: 'AI / Data Engineering Intern',
-            company: 'Kobeyo',
-            date: 'May 2025 - Aug 2025',
-            description: 'Built large-scale business data pipeline for Los Angeles market. Automated data collection using Google Places API, Apify, Selenium, and Playwright. Implemented AI workflows for skill tagging and email classification. Used GraphRAG-style approach and Supabase for retrieval and structured storage.'
+            description: 'Working on clinical NLP and LLM-driven systems. Built pipelines for HIV infographic generation using LLM prompting workflows. Exploring bias-mitigation considerations in AI outputs. Prototyped improved infographic pipeline using HTML-first generation and conversion to SVG for layout consistency.',
+            type: 'research',
+            icon: 'fas fa-flask',
+            active: true
         },
         {
             title: 'Honda 99P Labs Debate Agent',
             company: 'Multi-Agent System (Capstone)',
             date: 'Sept 2025 - Dec 2025',
-            description: 'Built multi-agent debate system with retrieval support. Implemented structured reasoning workflows and instrumentation patterns (Graphiti-style).'
+            description: 'Built multi-agent debate system with retrieval support. Implemented structured reasoning workflows and instrumentation patterns (Graphiti-style).',
+            type: 'project',
+            icon: 'fas fa-robot',
+            active: false
+        },
+        {
+            title: 'AI / Data Engineering Intern',
+            company: 'Kobeyo',
+            date: 'May 2025 - Aug 2025',
+            description: 'Built large-scale business data pipeline for Los Angeles market. Automated data collection using Google Places API, Apify, Selenium, and Playwright. Implemented AI workflows for skill tagging and email classification. Used GraphRAG-style approach and Supabase for retrieval and structured storage.',
+            type: 'internship',
+            icon: 'fas fa-database',
+            active: false
         },
         {
             title: 'Data Science Intern',
             company: 'CodSoft',
             date: 'Aug 2023 - Sept 2023',
-            description: 'Completed three applied ML projects: Sales Prediction, Movie Prediction, Titanic Survival Prediction. Performed data preprocessing, feature engineering, and model training/evaluation. Built end-to-end notebooks to generate predictions with 90%+ accuracy.'
+            description: 'Completed three applied ML projects: Sales Prediction, Movie Prediction, Titanic Survival Prediction. Performed data preprocessing, feature engineering, and model training/evaluation. Built end-to-end notebooks to generate predictions with 90%+ accuracy.',
+            type: 'internship',
+            icon: 'fas fa-chart-line',
+            active: false
         }
     ],
     
@@ -174,42 +186,6 @@ class BackToTop {
         this.button.addEventListener('click', () => {
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
-    }
-}
-
-// ===== THEME MANAGER =====
-class ThemeManager {
-    constructor() {
-        this.theme = localStorage.getItem('theme') || 'light';
-        this.init();
-    }
-
-    init() {
-        this.setTheme(this.theme);
-        this.bindEvents();
-    }
-
-    setTheme(theme) {
-        document.documentElement.setAttribute('data-theme', theme);
-        this.theme = theme;
-        localStorage.setItem('theme', theme);
-        
-        const icon = document.querySelector('#theme-toggle i');
-        if (icon) {
-            icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
-        }
-    }
-
-    toggleTheme() {
-        const newTheme = this.theme === 'light' ? 'dark' : 'light';
-        this.setTheme(newTheme);
-    }
-
-    bindEvents() {
-        const toggleBtn = document.getElementById('theme-toggle');
-        if (toggleBtn) {
-            toggleBtn.addEventListener('click', () => this.toggleTheme());
-        }
     }
 }
 
@@ -302,10 +278,9 @@ class ParticleSystem {
         
         this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
         
-        // Get theme
-        const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
-        const particleColor = isDark ? 'rgba(248, 250, 252, 0.3)' : 'rgba(15, 23, 42, 0.3)';
-        const lineColor = isDark ? 'rgba(248, 250, 252, 0.1)' : 'rgba(15, 23, 42, 0.1)';
+        // Subtle indigo-tinted particles for light background
+        const particleColor = 'rgba(99, 102, 241, 0.12)';
+        const lineColor = 'rgba(99, 102, 241, 0.04)';
         
         // Update and draw particles
         this.particles.forEach(particle => {
@@ -537,20 +512,35 @@ class ContentLoader {
     loadExperience() {
         const container = document.getElementById('experience-timeline');
         if (container) {
-            container.innerHTML = portfolioData.experience.map(exp => 
-                this.createTimelineItem(exp)
+            const total = portfolioData.experience.length;
+            container.innerHTML = portfolioData.experience.map((exp, index) => 
+                this.createTimelineItem(exp, index, total)
             ).join('');
         }
     }
     
-    createTimelineItem(exp) {
+    createTimelineItem(exp, index, total) {
+        const step = String(total - index).padStart(2, '0');
+        const statusClass = exp.active ? 'exp-active' : 'exp-completed';
+        const statusLabel = exp.active ? 'CURRENT' : 'COMPLETED';
         return `
-            <div class="timeline-item">
-                <div class="timeline-content">
-                    <h3 class="timeline-title">${exp.title}</h3>
-                    <p class="timeline-company">${exp.company}</p>
-                    <p class="timeline-date">${exp.date}</p>
-                    <p class="timeline-description">${exp.description}</p>
+            <div class="exp-card ${statusClass}" style="animation-delay: ${index * 0.15}s">
+                <div class="exp-step">
+                    <div class="exp-step-icon">
+                        <i class="${exp.icon}"></i>
+                    </div>
+                    <span class="exp-step-num">${step}</span>
+                </div>
+                <div class="exp-body">
+                    <div class="exp-top">
+                        <div class="exp-meta">
+                            <span class="exp-status ${statusClass}">${statusLabel}</span>
+                            <span class="exp-date">${exp.date}</span>
+                        </div>
+                        <h3 class="exp-role">${exp.title}</h3>
+                        <p class="exp-company">${exp.company}</p>
+                    </div>
+                    <p class="exp-desc">${exp.description}</p>
                 </div>
             </div>
         `;
@@ -623,42 +613,6 @@ class AnimationManager {
         // Observe elements
         const elementsToAnimate = document.querySelectorAll('.project-card, .timeline-item, .skill-category, .publication-card, .info-card, .contact-card');
         elementsToAnimate.forEach(el => observer.observe(el));
-    }
-}
-
-// ===== CARD 3D EFFECT =====
-class Card3DEffect {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        const cards = document.querySelectorAll('.project-card, .glass-card');
-        
-        cards.forEach(card => {
-            card.addEventListener('mousemove', this.handleMouseMove.bind(this));
-            card.addEventListener('mouseleave', this.handleMouseLeave.bind(this));
-        });
-    }
-    
-    handleMouseMove(e) {
-        const card = e.currentTarget;
-        const rect = card.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        
-        const centerX = rect.width / 2;
-        const centerY = rect.height / 2;
-        
-        const rotateX = (y - centerY) / 10;
-        const rotateY = (centerX - x) / 10;
-        
-        card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(10px)`;
-    }
-    
-    handleMouseLeave(e) {
-        const card = e.currentTarget;
-        card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateZ(0)';
     }
 }
 
@@ -773,14 +727,12 @@ class LoadingManager {
 // ===== MAIN APPLICATION =====
 class PortfolioApp {
     constructor() {
-        this.themeManager = new ThemeManager();
         this.customCursor = new CustomCursor();
         this.particleSystem = new ParticleSystem();
         this.scrollProgress = new ScrollProgress();
         this.navigationManager = new NavigationManager();
         this.contentLoader = new ContentLoader();
         this.animationManager = new AnimationManager();
-        this.card3DEffect = new Card3DEffect();
         this.contactFormManager = new ContactFormManager();
         this.loadingManager = new LoadingManager();
         this.backToTop = new BackToTop();
@@ -796,9 +748,8 @@ class PortfolioApp {
     
     init() {
         console.log('🚀 Portfolio loaded successfully!');
-        console.log('💎 Built with glassmorphism design and modern animations');
-        console.log('🎨 Theme: ' + (localStorage.getItem('theme') || 'light'));
-        console.log('✨ New features: Resume Download, Back to Top, Currently Learning');
+        console.log('🎨 Theme: Minimal');
+        console.log('✨ Features: Resume Download, Back to Top, Currently Learning');
     }
 }
 
