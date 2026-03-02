@@ -558,9 +558,11 @@ class ContentLoader {
     loadSkillCategory(containerId, skills) {
         const container = document.getElementById(containerId);
         if (container) {
-            container.innerHTML = skills.map(skill => 
+            // Create two copies for seamless infinite scroll
+            const skillsHTML = skills.map(skill => 
                 `<span class="skill-item">${skill}</span>`
             ).join('');
+            container.innerHTML = `<div class="marquee-content">${skillsHTML}</div><div class="marquee-content" aria-hidden="true">${skillsHTML}</div>`;
         }
     }
     
@@ -611,7 +613,7 @@ class AnimationManager {
         }, observerOptions);
         
         // Observe elements
-        const elementsToAnimate = document.querySelectorAll('.project-card, .timeline-item, .skill-category, .publication-card, .info-card, .contact-card');
+        const elementsToAnimate = document.querySelectorAll('.project-card, .timeline-item, .marquee-row, .publication-card, .info-card, .contact-card');
         elementsToAnimate.forEach(el => observer.observe(el));
     }
 }
