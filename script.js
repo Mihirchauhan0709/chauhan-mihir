@@ -43,9 +43,9 @@ const data = {
             org: 'Kobeyo',
             loc: 'Boulder, CO',
             points: [
-                'Implemented an MLOps pipeline for a custom BERT model — a self-improving, human-in-the-loop system that lifted production classification accuracy through continuous fine-tuning.',
-                'Developed and deployed a full-stack data ingestion API in Python with resilient Playwright scraping, integrated with Supabase and PostgreSQL for real-time structured data.',
-                'Used OpenAI models and prompt engineering to extract structured job-skill data from unstructured text.'
+                'Improved production classification accuracy by building an MLOps pipeline for a custom BERT model with human-in-the-loop feedback — continuous fine-tuning and structured retraining cadences that sustained accuracy gains in a live environment.',
+                'Cut query time by 50% and expanded business data coverage by 40% by building a full-stack Python ingestion API with async Playwright scraping on a Supabase (PostgreSQL) backend.',
+                'Applied LLMs with prompt engineering to automate skill-tagging and structured job-data extraction at scale.'
             ],
             tags: ['MLOps', 'BERT', 'Human-in-the-Loop', 'PostgreSQL']
         },
@@ -70,25 +70,29 @@ const data = {
             subtitle: 'No-code AI agent platform · HackCU 2026 → independent project',
             description: 'Lets small businesses spin up a trained AI agent in under 60 seconds from their website and documents. FastAPI + Next.js, async crawling and RAG ingestion, three agent types (support QA, social monitoring via Bluesky AT Protocol with Gemini sentiment analysis, proactive marketing), deployed to a Vultr VPS with Nginx + PM2.',
             metrics: [
-                { v: '4,000+', k: 'LINES OF CODE' },
-                { v: '15+', k: 'REST ENDPOINTS' },
+                { v: '<60s', k: 'AGENT SPIN-UP' },
                 { v: '3', k: 'AGENT TYPES' },
-                { v: '<60s', k: 'AGENT SPIN-UP' }
+                { v: '24h', k: 'V1 BUILD TIME' }
             ],
             tags: ['FastAPI', 'Next.js', 'RAG', 'Gemini', 'Multi-Agent'],
-            links: []
+            links: [
+                { name: 'HOW WE BUILT IT — BLOG ↗', url: 'https://medium.com/@mihirchauhan951/we-built-a-no-code-ai-agent-platform-in-24-hours-99c6fffc4010' }
+            ]
         },
         {
             title: 'CodeSense',
             subtitle: 'AI-powered code review platform',
             description: 'Automated code analysis and patch suggestions on every push: GitHub webhooks with signature verification, security scanning (Semgrep, Ruff, Bandit, Black), GPT-generated patches, JWT auth, async Redis RQ workers, multi-tenant repos. Cloud architecture provisioned with Terraform on AWS — ECS Fargate, RDS, ElastiCache, S3 + CloudFront.',
             metrics: [
-                { v: '15+', k: 'REST ENDPOINTS' },
                 { v: '4', k: 'SECURITY SCANNERS' },
-                { v: 'IaC', k: 'TERRAFORM-PROVISIONED' }
+                { v: 'IaC', k: 'TERRAFORM-PROVISIONED' },
+                { v: 'MULTI', k: 'TENANT REPO SUPPORT' }
             ],
             tags: ['FastAPI', 'React 18', 'TypeScript', 'Terraform', 'AWS'],
-            links: []
+            video: 'assets/codesense-demo.mp4',
+            links: [
+                { name: 'FULL DEMO ↗', url: 'https://drive.google.com/file/d/18gwwV5BbdjfJL-JNVAxZo1u_zzwaJxcx/view?usp=sharing' }
+            ]
         },
         {
             title: 'AI Interview Coach',
@@ -195,12 +199,18 @@ function renderFeatured() {
     el.innerHTML = data.featuredProjects.map((p, i) => `
         <article class="eval-card reveal">
             <header class="eval-head">
-                <span class="eval-id mono">EVAL-${String(i + 1).padStart(2, '0')}</span>
+                <span class="eval-id mono">P-${String(i + 1).padStart(2, '0')}</span>
                 <div>
                     <h3 class="eval-title">${p.title}</h3>
                     <p class="eval-sub">${p.subtitle}</p>
                 </div>
             </header>
+            ${p.video ? `
+            <div class="eval-video">
+                <video controls muted playsinline preload="metadata" src="${p.video}"
+                       aria-label="${p.title} demo video"></video>
+                <span class="video-caption mono">PRODUCT DEMO · 3 MIN</span>
+            </div>` : ''}
             <p class="eval-desc">${p.description}</p>
             <div class="metric-row">
                 ${p.metrics.map(m => `
@@ -216,6 +226,15 @@ function renderFeatured() {
             </footer>
         </article>
     `).join('');
+
+    // If a demo file is missing (e.g., not yet copied into assets/),
+    // remove the player — the external demo link still works.
+    el.querySelectorAll('.eval-video video').forEach(v => {
+        v.addEventListener('error', () => {
+            const block = v.closest('.eval-video');
+            if (block) block.remove();
+        });
+    });
 }
 
 function renderAdditional() {
