@@ -1,762 +1,391 @@
-// ===========================
-//   MODERN PORTFOLIO - 2026
-//   Mihir Chauhan
-// ===========================
+// ============================================
+//   MIHIR CHAUHAN — MODEL CARD PORTFOLIO 2026
+// ============================================
 
-// ===== PORTFOLIO DATA =====
-const portfolioData = {
-    // Featured Projects
+// ===== DATA =====
+const data = {
+
+    // §02 Training run — most recent first (Updated June 2026)
+    experience: [
+        {
+            id: 'RUN-05',
+            status: 'running',
+            date: 'JAN 2026 — PRESENT',
+            role: 'Research Intern',
+            org: 'CU Anschutz · LARK Lab, Dept. of Biomedical Informatics',
+            loc: 'Aurora, CO',
+            points: [
+                'Designed rubric-based evaluation pipelines for LLM outputs in clinical annotation workflows, with QA checks and error analysis to surface failure modes and clinical relevance gaps.',
+                'Ran systematic prompt-engineering experiments; refined templates, structured outputs, and guardrails to improve reliability of generated clinical artifacts.',
+                'Built multi-step LLM pipelines for patient-facing clinical infographic generation (template selection → JSON blueprint → SVG composition) under strict layout constraints.'
+            ],
+            tags: ['LLM Evaluation', 'Prompt Engineering', 'Clinical NLP', 'Guardrails']
+        },
+        {
+            id: 'RUN-04',
+            status: 'complete',
+            date: 'SEPT 2025 — DEC 2025',
+            role: 'AI Engineer (Capstone)',
+            org: 'Honda 99P Labs',
+            loc: 'Boulder, CO',
+            points: [
+                'Designed a multi-agent debate engine with hybrid retrieval, vector databases, and curated evidence packs; improved citation accuracy and response relevance.',
+                'Built the FastAPI + Uvicorn backend with advanced RAG and context engineering; deployed on AWS ECS Fargate.',
+                'Used AWS Secrets Manager and CloudWatch for secure configuration and observability.'
+            ],
+            tags: ['Multi-Agent', 'RAG', 'AWS ECS Fargate', 'FastAPI']
+        },
+        {
+            id: 'RUN-03',
+            status: 'complete',
+            date: 'MAY 2025 — AUG 2025',
+            role: 'Junior Data Scientist Intern',
+            org: 'Kobeyo',
+            loc: 'Boulder, CO',
+            points: [
+                'Implemented an MLOps pipeline for a custom BERT model — a self-improving, human-in-the-loop system that lifted production classification accuracy through continuous fine-tuning.',
+                'Developed and deployed a full-stack data ingestion API in Python with resilient Playwright scraping, integrated with Supabase and PostgreSQL for real-time structured data.',
+                'Used OpenAI models and prompt engineering to extract structured job-skill data from unstructured text.'
+            ],
+            tags: ['MLOps', 'BERT', 'Human-in-the-Loop', 'PostgreSQL']
+        },
+        {
+            id: 'RUN-02',
+            status: 'complete',
+            date: 'AUG 2023 — SEPT 2023',
+            role: 'Data Science Intern',
+            org: 'CodSoft',
+            loc: 'Remote',
+            points: [
+                'Completed three applied ML projects end to end: sales prediction, movie prediction, and Titanic survival classification — preprocessing, feature engineering, training, and evaluation.'
+            ],
+            tags: ['Supervised Learning', 'Feature Engineering']
+        }
+    ],
+
+    // §03 Evaluations — featured
     featuredProjects: [
         {
-            title: 'CloudSense - AI Code Review Platform',
-            description: 'End-to-end platform to reduce manual code review with automated checks plus AI recommendations. Built with FastAPI, React 18, TypeScript, PostgreSQL, Redis, Docker, and AWS (ECS Fargate, RDS, ElastiCache). Features JWT auth, webhook signature verification, multi-tenant support, and AI-powered patch suggestions.',
-            image: 'Images/cloudsense.jpg',
-            tags: ['FastAPI', 'React', 'TypeScript', 'AWS', 'Docker', 'PostgreSQL', 'AI'],
-            links: [
-                { name: 'View Project', url: '#', icon: 'fas fa-external-link-alt' }
-            ]
+            title: 'AgentSquared',
+            subtitle: 'No-code AI agent platform · HackCU 2026 → independent project',
+            description: 'Lets small businesses spin up a trained AI agent in under 60 seconds from their website and documents. FastAPI + Next.js, async crawling and RAG ingestion, three agent types (support QA, social monitoring via Bluesky AT Protocol with Gemini sentiment analysis, proactive marketing), deployed to a Vultr VPS with Nginx + PM2.',
+            metrics: [
+                { v: '4,000+', k: 'LINES OF CODE' },
+                { v: '15+', k: 'REST ENDPOINTS' },
+                { v: '3', k: 'AGENT TYPES' },
+                { v: '<60s', k: 'AGENT SPIN-UP' }
+            ],
+            tags: ['FastAPI', 'Next.js', 'RAG', 'Gemini', 'Multi-Agent'],
+            links: []
+        },
+        {
+            title: 'CodeSense',
+            subtitle: 'AI-powered code review platform',
+            description: 'Automated code analysis and patch suggestions on every push: GitHub webhooks with signature verification, security scanning (Semgrep, Ruff, Bandit, Black), GPT-generated patches, JWT auth, async Redis RQ workers, multi-tenant repos. Cloud architecture provisioned with Terraform on AWS — ECS Fargate, RDS, ElastiCache, S3 + CloudFront.',
+            metrics: [
+                { v: '15+', k: 'REST ENDPOINTS' },
+                { v: '4', k: 'SECURITY SCANNERS' },
+                { v: 'IaC', k: 'TERRAFORM-PROVISIONED' }
+            ],
+            tags: ['FastAPI', 'React 18', 'TypeScript', 'Terraform', 'AWS'],
+            links: []
         },
         {
             title: 'AI Interview Coach',
-            description: 'Interview simulation product that generates job-description-specific questions and feedback. Built with LangChain, Streamlit, and FastAPI. Designed workflows for structured scoring and improvement recommendations focused on practical interview preparation.',
-            image: 'Images/ai-interview-coach.jpg',
-            tags: ['LangChain', 'Streamlit', 'FastAPI', 'LLM', 'NLP'],
+            subtitle: 'LLM interview simulation',
+            description: 'Generates job-description-specific interview questions, scores answers against structured rubrics, and returns improvement recommendations. Built with LangChain, Streamlit, and FastAPI — designed around how people actually prepare.',
+            metrics: [
+                { v: 'JD→Q', k: 'TAILORED QUESTIONS' },
+                { v: 'RUBRIC', k: 'STRUCTURED SCORING' }
+            ],
+            tags: ['LangChain', 'Streamlit', 'FastAPI', 'LLM'],
             links: [
-                { name: 'View Project', url: 'https://ai-interview-coach-kyz6kd8j8pu4feagzvj5lo.streamlit.app/', icon: 'fas fa-external-link-alt' },
-                { name: 'GitHub', url: 'https://github.com/Mihirchauhan0709/ai-interview-coach', icon: 'fab fa-github' }
-            ]
-        },
-        {
-            title: 'Asteroid Collision Prediction',
-            description: 'Analyzed asteroid datasets to classify objects, assess collision risk levels, and explore predictive modeling approaches. Implemented PCA, clustering, classification, and regression models to understand asteroid risk patterns for early warning insights.',
-            image: 'Images/asteroid.jpg',
-            tags: ['Machine Learning', 'Python', 'Data Science', 'Classification'],
-            links: [
-                { name: 'View Project', url: 'https://mihirchauhan0709.github.io/ml-project/', icon: 'fas fa-external-link-alt' }
+                { name: 'LIVE DEMO ↗', url: 'https://ai-interview-coach-kyz6kd8j8pu4feagzvj5lo.streamlit.app/' },
+                { name: 'GITHUB ↗', url: 'https://github.com/Mihirchauhan0709/ai-interview-coach' }
             ]
         },
         {
             title: 'Football Lineup Optimization',
-            description: 'Analyzed last 4 La Liga seasons from fbref.com. Built predictive models for goals and assists, clustered players for insights, generated Best XI for each season. Implemented Gradient Boosting classification for player role archetypes and match win probability modeling.',
-            image: 'Images/football-lineup.jpg',
-            tags: ['Python', 'Data Mining', 'ML', 'Gradient Boosting'],
+            subtitle: 'Data mining on 4 seasons of La Liga',
+            description: 'Cleaned and merged multi-header player/team tables from fbref.com, predicted goals and assists, clustered player archetypes with gradient boosting, generated a Best XI per season, and modeled match win probability from historical and home/away context.',
+            metrics: [
+                { v: '4', k: 'SEASONS ANALYZED' },
+                { v: 'XI×4', k: 'BEST LINEUPS GENERATED' }
+            ],
+            tags: ['Python', 'Gradient Boosting', 'Clustering'],
             links: [
-                { name: 'View Project', url: 'https://mihirchauhan0709.github.io/Data_mining_Project/', icon: 'fas fa-external-link-alt' },
-                { name: 'GitHub', url: 'https://github.com/Mihirchauhan0709/Data_mining_Project', icon: 'fab fa-github' }
+                { name: 'PROJECT ↗', url: 'https://mihirchauhan0709.github.io/Data_mining_Project/' },
+                { name: 'GITHUB ↗', url: 'https://github.com/Mihirchauhan0709/Data_mining_Project' }
             ]
         }
     ],
-    
-    // Additional Projects
+
+    // §03 Evaluations — additional runs
     additionalProjects: [
         {
-            title: 'Job Vacancies Dashboard for Jordan',
-            description: 'Built Power BI dashboard to explore job availability by district, enterprise size, and role. Translated Arabic dataset to English using Azure Translate API and Python scripting. Addressed youth unemployment with data visualization.',
-            image: 'Images/jobs-dashboard.png',
-            tags: ['Power BI', 'Azure', 'Python', 'Data Visualization'],
-            links: []
+            title: 'Yoga Posture Detection & Correction',
+            description: 'Led a team building pose estimation across 12 poses with real-time correction feedback, deployed via TensorFlow.js. 3,600+ images processed; published as a research paper.',
+            metric: '96.5% ACCURACY',
+            links: [
+                { name: 'PAPER ↗', url: 'https://journals.stmjournals.com/joosdt/article=2024/view=161704/' },
+                { name: 'GITHUB ↗', url: 'https://github.com/Mihirchauhan0709/Yoga_Pose_Estimation' }
+            ]
         },
         {
-            title: 'Yoga Posture Detection Platform',
-            description: 'Led team to build yoga pose estimation model with 96.5% accuracy across 12 poses using neural networks and TensorFlow. Built interactive platform where users track pose duration and compare with friends. Real-time correction feedback.',
-            image: 'Images/Yoga.jpg',
-            tags: ['TensorFlow', 'Computer Vision', 'Neural Networks'],
-            links: [
-                { name: 'Paper', url: 'https://journals.stmjournals.com/joosdt/article=2024/view=161704/', icon: 'fas fa-file-alt' },
-                { name: 'GitHub', url: 'https://github.com/Mihirchauhan0709/Yoga_Pose_Estimation', icon: 'fab fa-github' }
-            ]
+            title: 'Asteroid Collision Prediction',
+            description: 'Classified asteroid risk with PCA, clustering, association rules, decision trees, naïve Bayes, SVMs, and regression — supervised and unsupervised, compared head to head.',
+            metric: '7 ML METHODS',
+            links: [{ name: 'PROJECT ↗', url: 'https://mihirchauhan0709.github.io/ml-project/' }]
         },
         {
             title: 'Sign Language Recognition',
-            description: 'Built sign language recognition model translating gestures into English text. Achieved 92% accuracy using LSTM neural network pipeline for improved accessibility for the hearing impaired.',
-            image: 'Images/sign-language.jpg',
-            tags: ['LSTM', 'Python', 'Deep Learning', 'NLP'],
-            links: [
-                { name: 'GitHub', url: 'https://github.com/Mihirchauhan0709/sign_language_recognition', icon: 'fab fa-github' }
-            ]
+            description: 'LSTM pipeline translating sign-language gestures into English text, built on self-collected and structured gesture data.',
+            metric: '92% ACCURACY',
+            links: [{ name: 'GITHUB ↗', url: 'https://github.com/Mihirchauhan0709/sign_language_recognition' }]
         },
         {
-            title: 'College Management Chatbot',
-            description: 'Developed chatbot to assist new students with department queries and course information. Built interface and intent-response logic using NLP, ANN, JSON, and Tkinter.',
-            image: 'Images/chatbot.png',
-            tags: ['NLP', 'ANN', 'Python', 'Tkinter'],
+            title: 'Job Vacancies Dashboard — Jordan',
+            description: 'Hackathon Power BI dashboard targeting youth unemployment: translated an Arabic dataset with Azure Translate + Python, then mapped jobs by district, enterprise size, and role.',
+            metric: 'AR→EN PIPELINE',
             links: []
         }
     ],
-    
-    // Experience (chronological: most recent first)
-    experience: [
-        {
-            title: 'Research Intern',
-            company: 'CU Anschutz, LARK Lab (Department of Biomedical Informatics)',
-            date: 'Jan 2026 - Present',
-            description: 'Working on clinical NLP and LLM-driven systems. Built pipelines for HIV infographic generation using LLM prompting workflows. Exploring bias-mitigation considerations in AI outputs. Prototyped improved infographic pipeline using HTML-first generation and conversion to SVG for layout consistency.',
-            type: 'research',
-            icon: 'fas fa-flask',
-            active: true
-        },
-        {
-            title: 'Honda 99P Labs Debate Agent',
-            company: 'Multi-Agent System (Capstone)',
-            date: 'Sept 2025 - Dec 2025',
-            description: 'Built multi-agent debate system with retrieval support. Implemented structured reasoning workflows and instrumentation patterns (Graphiti-style).',
-            type: 'project',
-            icon: 'fas fa-robot',
-            active: false
-        },
-        {
-            title: 'AI / Data Engineering Intern',
-            company: 'Kobeyo',
-            date: 'May 2025 - Aug 2025',
-            description: 'Built large-scale business data pipeline for Los Angeles market. Automated data collection using Google Places API, Apify, Selenium, and Playwright. Implemented AI workflows for skill tagging and email classification. Used GraphRAG-style approach and Supabase for retrieval and structured storage.',
-            type: 'internship',
-            icon: 'fas fa-database',
-            active: false
-        },
-        {
-            title: 'Data Science Intern',
-            company: 'CodSoft',
-            date: 'Aug 2023 - Sept 2023',
-            description: 'Completed three applied ML projects: Sales Prediction, Movie Prediction, Titanic Survival Prediction. Performed data preprocessing, feature engineering, and model training/evaluation. Built end-to-end notebooks to generate predictions with 90%+ accuracy.',
-            type: 'internship',
-            icon: 'fas fa-chart-line',
-            active: false
-        }
-    ],
-    
-    // Skills
-    skills: {
-        languages: ['Python', 'R', 'C', 'C++', 'Java', 'JavaScript', 'SQL'],
-        ml: ['Machine Learning', 'Neural Networks', 'Deep Learning', 'NLP', 'Time-Series Analysis', 'Scikit-learn', 'TensorFlow', 'Keras', 'PyTorch', 'LangChain', 'LLMs'],
-        data: ['Pandas', 'NumPy', 'Data Visualization', 'Trend Analysis', 'Feature Engineering', 'EDA', 'Power BI', 'Tableau', 'Excel'],
-        databases: ['MongoDB', 'PostgreSQL', 'Redis', 'GitHub', 'Linux', 'R Studio', 'Weka'],
-        cloud: ['AWS', 'Google Cloud', 'Microsoft Azure', 'Docker', 'Terraform'],
-        web: ['HTML', 'CSS', 'Node.js', 'React', 'FastAPI']
-    },
-    
-    // Currently Learning
-    currentlyLearning: [
-        { name: 'Kubernetes', icon: 'fas fa-dharmachakra' },
-        { name: 'MLOps', icon: 'fas fa-robot' },
-        { name: 'AI Workflows', icon: 'fas fa-diagram-project' },
-        { name: 'AI Coding Tools', icon: 'fas fa-brain' },
-        { name: 'LangGraph', icon: 'fas fa-project-diagram' }
+
+    // §04 Capabilities
+    skills: [
+        { group: 'LANGUAGES', items: ['Python', 'SQL', 'JavaScript / TypeScript', 'R', 'Java', 'C / C++'] },
+        { group: 'ML / AI', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'LLM Evaluation', 'Prompt Engineering', 'RAG', 'Multi-Agent Systems', 'LangChain', 'NLP', 'Computer Vision'] },
+        { group: 'DATA', items: ['Pandas', 'NumPy', 'Feature Engineering', 'EDA', 'Power BI', 'Tableau'] },
+        { group: 'BACKEND & DATABASES', items: ['FastAPI', 'PostgreSQL', 'Redis', 'Supabase', 'MongoDB', 'REST APIs'] },
+        { group: 'CLOUD & DEVOPS', items: ['AWS (ECS Fargate, RDS, S3, CloudWatch, Secrets Manager)', 'Docker', 'Terraform', 'GCP', 'Azure', 'CI/CD'] },
+        { group: 'WEB', items: ['React', 'Next.js', 'Node.js', 'HTML / CSS'] }
     ]
 };
 
-// ===== UTILITY FUNCTIONS =====
-const utils = {
-    debounce: (func, wait) => {
-        let timeout;
-        return function executedFunction(...args) {
-            const later = () => {
-                clearTimeout(timeout);
-                func(...args);
-            };
-            clearTimeout(timeout);
-            timeout = setTimeout(later, wait);
-        };
-    },
-    
-    lerp: (start, end, factor) => start + (end - start) * factor,
-    
-    map: (value, inMin, inMax, outMin, outMax) => {
-        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
-    }
-};
-
-// ===== BACK TO TOP BUTTON =====
-class BackToTop {
-    constructor() {
-        this.button = document.getElementById('back-to-top');
-        if (this.button) {
-            this.init();
-        }
-    }
-    
-    init() {
-        window.addEventListener('scroll', utils.debounce(() => {
-            if (window.scrollY > 500) {
-                this.button.classList.add('visible');
-            } else {
-                this.button.classList.remove('visible');
-            }
-        }, 100));
-        
-        this.button.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-    }
-}
-
-// ===== CUSTOM CURSOR =====
-class CustomCursor {
-    constructor() {
-        this.dot = document.getElementById('cursor-dot');
-        this.outline = document.getElementById('cursor-outline');
-        this.mouseX = 0;
-        this.mouseY = 0;
-        this.dotX = 0;
-        this.dotY = 0;
-        this.outlineX = 0;
-        this.outlineY = 0;
-        
-        if (this.dot && this.outline && !this.isTouchDevice()) {
-            this.init();
-        }
-    }
-    
-    isTouchDevice() {
-        return 'ontouchstart' in window || navigator.maxTouchPoints > 0;
-    }
-    
-    init() {
-        document.addEventListener('mousemove', this.handleMouseMove.bind(this));
-        this.animate();
-    }
-    
-    handleMouseMove(e) {
-        this.mouseX = e.clientX;
-        this.mouseY = e.clientY;
-    }
-    
-    animate() {
-        // Smooth follow with lerp
-        this.dotX = utils.lerp(this.dotX, this.mouseX, 0.95);
-        this.dotY = utils.lerp(this.dotY, this.mouseY, 0.95);
-        this.outlineX = utils.lerp(this.outlineX, this.mouseX, 0.3);
-        this.outlineY = utils.lerp(this.outlineY, this.mouseY, 0.3);
-        
-        this.dot.style.left = this.dotX + 'px';
-        this.dot.style.top = this.dotY + 'px';
-        this.outline.style.left = this.outlineX + 'px';
-        this.outline.style.top = this.outlineY + 'px';
-        
-        requestAnimationFrame(this.animate.bind(this));
-    }
-}
-
-// ===== PARTICLE SYSTEM =====
-class ParticleSystem {
-    constructor() {
-        this.canvas = document.getElementById('particle-canvas');
-        if (!this.canvas || window.innerWidth < 768) return;
-        
-        this.ctx = this.canvas.getContext('2d');
-        this.particles = [];
-        this.particleCount = 50;
-        this.init();
-    }
-    
-    init() {
-        this.resize();
-        this.createParticles();
-        this.animate();
-        
-        window.addEventListener('resize', utils.debounce(() => this.resize(), 250));
-    }
-    
-    resize() {
-        this.canvas.width = window.innerWidth;
-        this.canvas.height = window.innerHeight;
-    }
-    
-    createParticles() {
-        for (let i = 0; i < this.particleCount; i++) {
-            this.particles.push({
-                x: Math.random() * this.canvas.width,
-                y: Math.random() * this.canvas.height,
-                vx: (Math.random() - 0.5) * 0.5,
-                vy: (Math.random() - 0.5) * 0.5,
-                radius: Math.random() * 2 + 1
-            });
-        }
-    }
-    
-    animate() {
-        if (!this.ctx) return;
-        
-        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
-        
-        // Subtle indigo-tinted particles for light background
-        const particleColor = 'rgba(99, 102, 241, 0.12)';
-        const lineColor = 'rgba(99, 102, 241, 0.04)';
-        
-        // Update and draw particles
-        this.particles.forEach(particle => {
-            particle.x += particle.vx;
-            particle.y += particle.vy;
-            
-            // Wrap around edges
-            if (particle.x < 0 || particle.x > this.canvas.width) particle.vx *= -1;
-            if (particle.y < 0 || particle.y > this.canvas.height) particle.vy *= -1;
-            
-            // Draw particle
-            this.ctx.beginPath();
-            this.ctx.arc(particle.x, particle.y, particle.radius, 0, Math.PI * 2);
-            this.ctx.fillStyle = particleColor;
-            this.ctx.fill();
-        });
-        
-        // Draw connections
-        for (let i = 0; i < this.particles.length; i++) {
-            for (let j = i + 1; j < this.particles.length; j++) {
-                const dx = this.particles[i].x - this.particles[j].x;
-                const dy = this.particles[i].y - this.particles[j].y;
-                const distance = Math.sqrt(dx * dx + dy * dy);
-                
-                if (distance < 150) {
-                    this.ctx.beginPath();
-                    this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
-                    this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
-                    this.ctx.strokeStyle = lineColor;
-                    this.ctx.lineWidth = 1;
-                    this.ctx.stroke();
-                }
-            }
-        }
-        
-        requestAnimationFrame(this.animate.bind(this));
-    }
-}
-
-// ===== SCROLL PROGRESS =====
-class ScrollProgress {
-    constructor() {
-        this.progressBar = document.getElementById('scroll-progress');
-        if (this.progressBar) {
-            this.init();
-        }
-    }
-    
-    init() {
-        window.addEventListener('scroll', () => this.update());
-        this.update();
-    }
-    
-    update() {
-        const winScroll = document.documentElement.scrollTop;
-        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-        const scrolled = (winScroll / height) * 100;
-        this.progressBar.style.width = scrolled + '%';
-    }
-}
-
-// ===== TYPING ANIMATION =====
-class TypingAnimation {
-    constructor(element, text, speed = 50) {
-        this.element = element;
-        this.text = text;
-        this.speed = speed;
-        this.index = 0;
-        
-        if (this.element) {
-            this.type();
-        }
-    }
-    
-    type() {
-        if (this.index < this.text.length) {
-            const currentText = this.text.substring(0, this.index + 1);
-            this.element.textContent = currentText;
-            this.index++;
-            setTimeout(() => this.type(), this.speed);
-        } else {
-            // Remove cursor after typing completes
-            setTimeout(() => {
-                this.element.style.removeProperty('--cursor');
-            }, 1000);
-        }
-    }
-}
-
-// ===== NAVIGATION MANAGER =====
-class NavigationManager {
-    constructor() {
-        this.navbar = document.getElementById('navbar');
-        this.init();
-    }
-    
-    init() {
-        this.bindEvents();
-        this.updateActiveNav();
-        this.handleScroll();
-    }
-    
-    bindEvents() {
-        // Smooth scrolling
-        document.querySelectorAll('.nav-link').forEach(link => {
-            link.addEventListener('click', (e) => {
-                e.preventDefault();
-                const targetId = link.getAttribute('href').substring(1);
-                const targetSection = document.getElementById(targetId);
-                if (targetSection) {
-                    const offset = 80;
-                    const targetPosition = targetSection.offsetTop - offset;
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu
-                    document.getElementById('hamburger').classList.remove('active');
-                    document.getElementById('nav-menu').classList.remove('active');
-                }
-            });
-        });
-        
-        // Mobile menu toggle
-        const hamburger = document.getElementById('hamburger');
-        const navMenu = document.getElementById('nav-menu');
-        
-        if (hamburger && navMenu) {
-            hamburger.addEventListener('click', () => {
-                hamburger.classList.toggle('active');
-                navMenu.classList.toggle('active');
-            });
-        }
-        
-        // Update on scroll
-        window.addEventListener('scroll', utils.debounce(() => {
-            this.updateActiveNav();
-            this.handleScroll();
-        }, 100));
-    }
-    
-    handleScroll() {
-        if (window.scrollY > 100) {
-            this.navbar.classList.add('scrolled');
-        } else {
-            this.navbar.classList.remove('scrolled');
-        }
-    }
-    
-    updateActiveNav() {
-        const sections = document.querySelectorAll('section[id]');
-        const navLinks = document.querySelectorAll('.nav-link');
-        
-        let current = '';
-        sections.forEach(section => {
-            const sectionTop = section.offsetTop - 150;
-            const sectionHeight = section.clientHeight;
-            if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-                current = section.getAttribute('id');
-            }
-        });
-        
-        navLinks.forEach(link => {
-            link.classList.remove('active');
-            if (link.getAttribute('href') === `#${current}`) {
-                link.classList.add('active');
-            }
-        });
-    }
-}
-
-// ===== CONTENT LOADER =====
-class ContentLoader {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        this.loadProjects();
-        this.loadExperience();
-        this.loadSkills();
-        this.loadCurrentlyLearning();
-    }
-    
-    loadProjects() {
-        // Featured Projects
-        const featuredContainer = document.getElementById('featured-projects');
-        if (featuredContainer) {
-            featuredContainer.innerHTML = portfolioData.featuredProjects.map(project => 
-                this.createProjectCard(project)
-            ).join('');
-        }
-        
-        // Additional Projects
-        const additionalContainer = document.getElementById('additional-projects');
-        if (additionalContainer) {
-            additionalContainer.innerHTML = portfolioData.additionalProjects.map(project => 
-                this.createProjectCard(project)
-            ).join('');
-        }
-    }
-    
-    createProjectCard(project) {
-        const tags = project.tags.map(tag => 
-            `<span class="project-tag">${tag}</span>`
-        ).join('');
-        
-        const links = project.links.length > 0 ? project.links.map(link => 
-            `<a href="${link.url}" class="project-link" target="_blank" rel="noopener noreferrer">
-                <i class="${link.icon}"></i>
-                <span>${link.name}</span>
-            </a>`
-        ).join('') : '';
-        
-        return `
-            <div class="project-card">
-                <img src="${project.image}" alt="${project.title}" class="project-image" loading="lazy" onerror="this.src='Images/placeholder.jpg'">
-                <div class="project-content">
-                    <h3 class="project-title">${project.title}</h3>
-                    <p class="project-description">${project.description}</p>
-                    <div class="project-tags">${tags}</div>
-                    ${links ? `<div class="project-links">${links}</div>` : ''}
+// ===== RENDERERS =====
+function renderExperience() {
+    const el = document.getElementById('experience-log');
+    if (!el) return;
+    el.innerHTML = data.experience.map(exp => `
+        <li class="log-entry reveal ${exp.status === 'running' ? 'is-running' : ''}">
+            <div class="log-rail">
+                <span class="log-id mono">${exp.id}</span>
+                <span class="log-status mono ${exp.status === 'running' ? 'status-run' : 'status-done'}">
+                    ${exp.status === 'running' ? '<span class="dot" aria-hidden="true"></span>RUNNING' : 'COMPLETE'}
+                </span>
+            </div>
+            <div class="log-body">
+                <p class="log-date mono">${exp.date} · ${exp.loc}</p>
+                <h3 class="log-role">${exp.role}</h3>
+                <p class="log-org">${exp.org}</p>
+                <ul class="log-points">
+                    ${exp.points.map(p => `<li>${p}</li>`).join('')}
+                </ul>
+                <div class="tag-row">
+                    ${exp.tags.map(t => `<span class="tag mono">${t}</span>`).join('')}
                 </div>
             </div>
-        `;
-    }
-    
-    loadExperience() {
-        const container = document.getElementById('experience-timeline');
-        if (container) {
-            const total = portfolioData.experience.length;
-            container.innerHTML = portfolioData.experience.map((exp, index) => 
-                this.createTimelineItem(exp, index, total)
-            ).join('');
-        }
-    }
-    
-    createTimelineItem(exp, index, total) {
-        const step = String(total - index).padStart(2, '0');
-        const statusClass = exp.active ? 'exp-active' : 'exp-completed';
-        const statusLabel = exp.active ? 'CURRENT' : 'COMPLETED';
-        return `
-            <div class="exp-card ${statusClass}" style="animation-delay: ${index * 0.15}s">
-                <div class="exp-step">
-                    <div class="exp-step-icon">
-                        <i class="${exp.icon}"></i>
-                    </div>
-                    <span class="exp-step-num">${step}</span>
+        </li>
+    `).join('');
+}
+
+function renderFeatured() {
+    const el = document.getElementById('featured-projects');
+    if (!el) return;
+    el.innerHTML = data.featuredProjects.map((p, i) => `
+        <article class="eval-card reveal">
+            <header class="eval-head">
+                <span class="eval-id mono">EVAL-${String(i + 1).padStart(2, '0')}</span>
+                <div>
+                    <h3 class="eval-title">${p.title}</h3>
+                    <p class="eval-sub">${p.subtitle}</p>
                 </div>
-                <div class="exp-body">
-                    <div class="exp-top">
-                        <div class="exp-meta">
-                            <span class="exp-status ${statusClass}">${statusLabel}</span>
-                            <span class="exp-date">${exp.date}</span>
-                        </div>
-                        <h3 class="exp-role">${exp.title}</h3>
-                        <p class="exp-company">${exp.company}</p>
-                    </div>
-                    <p class="exp-desc">${exp.description}</p>
-                </div>
+            </header>
+            <p class="eval-desc">${p.description}</p>
+            <div class="metric-row">
+                ${p.metrics.map(m => `
+                    <div class="metric">
+                        <span class="metric-v">${m.v}</span>
+                        <span class="metric-k mono">${m.k}</span>
+                    </div>`).join('')}
             </div>
-        `;
-    }
-    
-    loadSkills() {
-        this.loadSkillCategory('languages-skills', portfolioData.skills.languages);
-        this.loadSkillCategory('ml-skills', portfolioData.skills.ml);
-        this.loadSkillCategory('data-skills', portfolioData.skills.data);
-        this.loadSkillCategory('database-skills', portfolioData.skills.databases);
-        this.loadSkillCategory('cloud-skills', portfolioData.skills.cloud);
-        this.loadSkillCategory('web-skills', portfolioData.skills.web);
-    }
-    
-    loadSkillCategory(containerId, skills) {
-        const container = document.getElementById(containerId);
-        if (container) {
-            // Create two copies for seamless infinite scroll
-            const skillsHTML = skills.map(skill => 
-                `<span class="skill-item">${skill}</span>`
-            ).join('');
-            container.innerHTML = `<div class="marquee-content">${skillsHTML}</div><div class="marquee-content" aria-hidden="true">${skillsHTML}</div>`;
-        }
-    }
-    
-    loadCurrentlyLearning() {
-        const container = document.getElementById('learning-tags');
-        if (container) {
-            container.innerHTML = portfolioData.currentlyLearning.map(item => 
-                `<span class="learning-tag">
-                    <i class="${item.icon}"></i>
-                    ${item.name}
-                </span>`
-            ).join('');
-        }
-    }
+            <footer class="eval-foot">
+                <div class="tag-row">${p.tags.map(t => `<span class="tag mono">${t}</span>`).join('')}</div>
+                ${p.links.length ? `<div class="link-row">${p.links.map(l =>
+                    `<a class="text-link mono" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.name}</a>`).join('')}</div>` : ''}
+            </footer>
+        </article>
+    `).join('');
 }
 
-// ===== ANIMATION MANAGER =====
-class AnimationManager {
-    constructor() {
-        this.animatedElements = new Set();
-        this.init();
+function renderAdditional() {
+    const el = document.getElementById('additional-projects');
+    if (!el) return;
+    el.innerHTML = data.additionalProjects.map(p => `
+        <article class="mini-card reveal">
+            <span class="mini-metric mono">${p.metric}</span>
+            <h4 class="mini-title">${p.title}</h4>
+            <p class="mini-desc">${p.description}</p>
+            ${p.links.length ? `<div class="link-row">${p.links.map(l =>
+                `<a class="text-link mono" href="${l.url}" target="_blank" rel="noopener noreferrer">${l.name}</a>`).join('')}</div>` : ''}
+        </article>
+    `).join('');
+}
+
+function renderSkills() {
+    const el = document.getElementById('skills-matrix');
+    if (!el) return;
+    el.innerHTML = data.skills.map(s => `
+        <div class="cap-row reveal">
+            <h3 class="cap-group mono">${s.group}</h3>
+            <div class="tag-row">
+                ${s.items.map(i => `<span class="tag tag-lg mono">${i}</span>`).join('')}
+            </div>
+        </div>
+    `).join('');
+}
+
+// ===== INTERACTIONS =====
+const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+function setupReveals() {
+    const els = document.querySelectorAll('.reveal');
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+        els.forEach(el => el.classList.add('in'));
+        return;
     }
-    
-    init() {
-        this.setupIntersectionObserver();
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                e.target.classList.add('in');
+                obs.unobserve(e.target);
+            }
+        });
+    }, { threshold: 0.12, rootMargin: '0px 0px -60px 0px' });
+    els.forEach(el => obs.observe(el));
+}
+
+function setupSpecCard() {
+    const rows = document.querySelectorAll('#spec-card .spec-row');
+    if (reducedMotion) {
+        rows.forEach(r => r.classList.add('in'));
+        return;
     }
-    
-    setupIntersectionObserver() {
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -100px 0px'
+    rows.forEach((r, i) => setTimeout(() => r.classList.add('in'), 250 + i * 140));
+}
+
+function setupCounters() {
+    const nums = document.querySelectorAll('[data-count]');
+    if (reducedMotion || !('IntersectionObserver' in window)) {
+        nums.forEach(n => { n.textContent = n.dataset.count; });
+        return;
+    }
+    const animate = el => {
+        const target = parseFloat(el.dataset.count);
+        const decimals = parseInt(el.dataset.decimals || '0', 10);
+        const dur = 900;
+        const t0 = performance.now();
+        const tick = now => {
+            const p = Math.min((now - t0) / dur, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            el.textContent = (target * eased).toFixed(decimals);
+            if (p < 1) requestAnimationFrame(tick);
         };
-        
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting && !this.animatedElements.has(entry.target)) {
-                    this.animatedElements.add(entry.target);
-                    entry.target.style.opacity = '0';
-                    entry.target.style.transform = 'translateY(30px)';
-                    
-                    setTimeout(() => {
-                        entry.target.style.transition = 'all 0.8s cubic-bezier(0.4, 0, 0.2, 1)';
-                        entry.target.style.opacity = '1';
-                        entry.target.style.transform = 'translateY(0)';
-                    }, 100);
-                }
-            });
-        }, observerOptions);
-        
-        // Observe elements
-        const elementsToAnimate = document.querySelectorAll('.project-card, .timeline-item, .marquee-row, .publication-card, .info-card, .contact-card');
-        elementsToAnimate.forEach(el => observer.observe(el));
-    }
+        requestAnimationFrame(tick);
+    };
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { animate(e.target); obs.unobserve(e.target); }
+        });
+    }, { threshold: 0.5 });
+    nums.forEach(n => obs.observe(n));
 }
 
-// ===== CONTACT FORM MANAGER =====
-class ContactFormManager {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        const form = document.getElementById('contact-form');
-        if (form) {
-            form.addEventListener('submit', (e) => this.handleSubmit(e));
-        }
-    }
-    
-    async handleSubmit(e) {
+function setupNav() {
+    const topbar = document.getElementById('topbar');
+    const menuBtn = document.getElementById('menu-btn');
+    const nav = document.getElementById('topbar-nav');
+
+    window.addEventListener('scroll', () => {
+        topbar.classList.toggle('scrolled', window.scrollY > 24);
+    }, { passive: true });
+
+    menuBtn.addEventListener('click', () => {
+        const open = nav.classList.toggle('open');
+        menuBtn.classList.toggle('open', open);
+        menuBtn.setAttribute('aria-expanded', String(open));
+    });
+
+    document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+            nav.classList.remove('open');
+            menuBtn.classList.remove('open');
+            menuBtn.setAttribute('aria-expanded', 'false');
+        });
+    });
+
+    // Active section highlighting
+    const sections = document.querySelectorAll('section[id]');
+    const links = document.querySelectorAll('.nav-link');
+    const spy = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) {
+                links.forEach(l => l.classList.toggle('active',
+                    l.getAttribute('href') === `#${e.target.id}`));
+            }
+        });
+    }, { rootMargin: '-40% 0px -55% 0px' });
+    sections.forEach(s => spy.observe(s));
+}
+
+function setupForm() {
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('form-status');
+    if (!form) return;
+
+    form.addEventListener('submit', async e => {
         e.preventDefault();
-        
-        const form = e.target;
-        const submitBtn = form.querySelector('button[type="submit"]');
-        const originalHTML = submitBtn.innerHTML;
-        
-        // Show loading state
-        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Sending...</span>';
-        submitBtn.disabled = true;
-        
+        const btn = form.querySelector('button[type="submit"]');
+        const original = btn.textContent;
+        btn.textContent = 'Sending…';
+        btn.disabled = true;
+        status.textContent = '';
+
         try {
-            const formData = new FormData(form);
-            const data = {
-                from_name: formData.get('name'),
-                from_email: formData.get('email'),
-                message: formData.get('message')
+            const fd = new FormData(form);
+            const payload = {
+                from_name: fd.get('name'),
+                from_email: fd.get('email'),
+                message: fd.get('message')
             };
-            
-            const response = await emailjs.send("service_692e32d", "template_n3h2m8o", data);
-            
-            if (response.status === 200) {
-                this.showNotification('Message sent successfully! I\'ll get back to you soon.', 'success');
+            const res = await emailjs.send('service_692e32d', 'template_n3h2m8o', payload);
+            if (res.status === 200) {
+                status.textContent = '✓ MESSAGE SENT — I\'ll get back to you soon.';
+                status.className = 'form-status mono ok';
                 form.reset();
             } else {
-                throw new Error('Failed to send message');
+                throw new Error('send failed');
             }
-        } catch (error) {
-            console.error('Contact form error:', error);
-            this.showNotification('Failed to send message. Please try again or email me directly.', 'error');
+        } catch (err) {
+            console.error('Contact form error:', err);
+            status.textContent = '✗ SEND FAILED — email me directly at mihirchauhan951@gmail.com';
+            status.className = 'form-status mono err';
         } finally {
-            submitBtn.innerHTML = originalHTML;
-            submitBtn.disabled = false;
+            btn.textContent = original;
+            btn.disabled = false;
         }
-    }
-    
-    showNotification(message, type = 'info') {
-        const notification = document.createElement('div');
-        notification.className = `notification notification-${type}`;
-        notification.style.cssText = `
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            background: ${type === 'success' ? '#10b981' : '#ef4444'};
-            color: white;
-            padding: 1rem 1.5rem;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
-            z-index: 10000;
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            transform: translateX(120%);
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            font-weight: 500;
-        `;
-        
-        notification.innerHTML = `
-            <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-            <span>${message}</span>
-        `;
-        
-        document.body.appendChild(notification);
-        
-        setTimeout(() => {
-            notification.style.transform = 'translateX(0)';
-        }, 100);
-        
-        setTimeout(() => {
-            notification.style.transform = 'translateX(120%)';
-            setTimeout(() => {
-                document.body.removeChild(notification);
-            }, 300);
-        }, 5000);
-    }
+    });
 }
 
-// ===== LOADING MANAGER =====
-class LoadingManager {
-    constructor() {
-        this.init();
-    }
-    
-    init() {
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                const loadingScreen = document.getElementById('loading-screen');
-                if (loadingScreen) {
-                    loadingScreen.classList.add('hidden');
-                }
-            }, 1000);
-        });
-    }
-}
-
-// ===== MAIN APPLICATION =====
-class PortfolioApp {
-    constructor() {
-        this.customCursor = new CustomCursor();
-        this.particleSystem = new ParticleSystem();
-        this.scrollProgress = new ScrollProgress();
-        this.navigationManager = new NavigationManager();
-        this.contentLoader = new ContentLoader();
-        this.animationManager = new AnimationManager();
-        this.contactFormManager = new ContactFormManager();
-        this.loadingManager = new LoadingManager();
-        this.backToTop = new BackToTop();
-        
-        // Start typing animation after a delay
-        setTimeout(() => {
-            const taglineElement = document.getElementById('hero-tagline');
-            if (taglineElement) {
-                new TypingAnimation(taglineElement, 'Building end-to-end AI systems: from data pipelines to deployed products', 40);
-            }
-        }, 1500);
-    }
-    
-    init() {
-        console.log('🚀 Portfolio loaded successfully!');
-        console.log('🎨 Theme: Minimal');
-        console.log('✨ Features: Resume Download, Back to Top, Currently Learning');
-    }
-}
-
-// ===== INITIALIZE APPLICATION =====
+// ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
-    const app = new PortfolioApp();
-    app.init();
+    renderExperience();
+    renderFeatured();
+    renderAdditional();
+    renderSkills();
+    setupReveals();
+    setupSpecCard();
+    setupCounters();
+    setupNav();
+    setupForm();
 });

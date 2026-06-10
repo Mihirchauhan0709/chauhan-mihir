@@ -3,473 +3,297 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mihir Chauhan - Data Scientist & AI/ML Engineer</title>
-    <meta name="description" content="Data Science graduate student at CU Boulder specializing in end-to-end AI systems, LLM pipelines, and cloud-native infrastructure. Building production AI solutions from data pipelines to deployment.">
-    <meta name="keywords" content="Data Science, Machine Learning, AI, LLM, Python, Cloud, AWS, NLP, Engineer">
+    <title>Mihir Chauhan — ML / AI Engineer</title>
+    <meta name="description" content="Mihir Chauhan — ML/AI engineer building production AI systems: LLM evaluation pipelines, multi-agent systems, RAG, MLOps, and cloud-native infrastructure. M.S. Data Science, CU Boulder.">
+    <meta name="keywords" content="Machine Learning Engineer, AI Engineer, LLM, RAG, Multi-Agent Systems, MLOps, AWS, Python">
     <meta name="author" content="Mihir Chauhan">
-    
+
     <!-- Open Graph / Social Media -->
     <meta property="og:type" content="website">
-    <meta property="og:title" content="Mihir Chauhan - Data Scientist & AI Engineer">
-    <meta property="og:description" content="Building end-to-end AI systems: from data pipelines to deployed products">
+    <meta property="og:title" content="Mihir Chauhan — ML / AI Engineer">
+    <meta property="og:description" content="Production AI systems: LLM evaluation, multi-agent platforms, RAG pipelines, MLOps, and AWS infrastructure.">
     <meta property="og:url" content="https://mihirchauhan0709.github.io/chauhan-mihir/">
-    
+
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Mihir Chauhan - Data Scientist & AI Engineer">
-    <meta name="twitter:description" content="Building end-to-end AI systems: from data pipelines to deployed products">
-    
+    <meta name="twitter:title" content="Mihir Chauhan — ML / AI Engineer">
+    <meta name="twitter:description" content="Production AI systems: LLM evaluation, multi-agent platforms, RAG pipelines, MLOps, and AWS infrastructure.">
+
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
     <link rel="icon" type="image/svg+xml" href="favicon/favicon.svg">
     <link rel="shortcut icon" href="favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
-    
+
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-    
-    <!-- Fonts -->
+
+    <!-- Fonts: Archivo (variable width) for display + body, IBM Plex Mono for data -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:ital,wdth,wght@0,62..125,100..900;1,62..125,100..900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
     <!-- EmailJS -->
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script type="text/javascript">
         (function() {
-            emailjs.init({
-              publicKey: "GhFtq6Okk97dn7Uf5",
-            });
+            emailjs.init({ publicKey: "GhFtq6Okk97dn7Uf5" });
         })();
     </script>
-    <!-- Vercel Web Analytics (works for static sites hosted on Vercel) -->
+    <!-- Vercel Web Analytics -->
     <script defer src="/_vercel/insights/script.js"></script>
-    <!-- Vercel Speed Insights (works for static sites hosted on Vercel) -->
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
-    <!-- Custom Cursor -->
-    <div class="cursor-dot" id="cursor-dot"></div>
-    <div class="cursor-outline" id="cursor-outline"></div>
-    
-    <!-- Particle Background -->
-    <canvas id="particle-canvas" class="particle-canvas"></canvas>
-    
-    <!-- Scroll Progress Bar -->
-    <div class="scroll-progress" id="scroll-progress"></div>
-    
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="#home">MC</a>
-            </div>
-            <ul class="nav-menu" id="nav-menu">
-                <li><a href="#home" class="nav-link">Home</a></li>
-                <li><a href="#about" class="nav-link">About</a></li>
-                <li><a href="#skills" class="nav-link">Skills</a></li>
-                <li><a href="#experience" class="nav-link">Experience</a></li>
-                <li><a href="#projects" class="nav-link">Projects</a></li>
-                <li><a href="#publications" class="nav-link">Publications</a></li>
-                <li><a href="#contact" class="nav-link">Contact</a></li>
-            </ul>
-            <div class="hamburger" id="hamburger">
-                <span class="bar"></span>
-                <span class="bar"></span>
-                <span class="bar"></span>
-            </div>
-        </div>
-    </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-gradient"></div>
-        <div class="hero-container">
-            <div class="hero-content">
-                <div class="hero-text">
-                    <div class="hero-greeting">Hello, I'm</div>
-                    <h1 class="hero-name">
-                        <span class="name-text">Mihir Chauhan</span>
-                    </h1>
-                    <div class="hero-role">
-                        <span class="role-text">Data Scientist &</span>
-                        <span class="role-text">AI/ML Engineer</span>
-                    </div>
-                    <p class="hero-tagline" id="hero-tagline"></p>
-                    <div class="hero-buttons">
-                        <a href="#projects" class="btn btn-primary">
-                            <span>View My Work</span>
-                            <i class="fas fa-arrow-right"></i>
-                        </a>
-                        <a href="#contact" class="btn btn-secondary">
-                            <span>Get In Touch</span>
-                            <i class="fas fa-envelope"></i>
-                        </a>
-                    </div>
-                    <div class="hero-social">
-                        <a href="https://github.com/Mihirchauhan0709" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <!-- <a href="https://mihirchauhan0709.github.io/chauhan-mihir/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
-                            <i class="fas fa-globe"></i> -->
-                        </a>
-                    </div>
-                </div>
-                <div class="hero-image">
-                    <div class="image-wrapper">
-                        <div class="image-glow"></div>
-                        <img src="Images/mihir.jpg" alt="Mihir Chauhan - Data Scientist" class="profile-image">
-                    </div>
-                </div>
-            </div>
-            <div class="scroll-indicator">
-                <span>Scroll to explore</span>
-                <div class="scroll-arrow"></div>
-            </div>
-        </div>
-    </section>
+    <!-- ===== TOP BAR ===== -->
+    <header class="topbar" id="topbar">
+        <a class="topbar-id" href="#top">
+            <span class="topbar-mark"></span>
+            <span class="mono">MIHIR.CHAUHAN</span>
+        </a>
+        <nav class="topbar-nav" id="topbar-nav" aria-label="Sections">
+            <a href="#overview" class="nav-link"><span class="nav-num">01</span>Overview</a>
+            <a href="#experience" class="nav-link"><span class="nav-num">02</span>Training&nbsp;run</a>
+            <a href="#projects" class="nav-link"><span class="nav-num">03</span>Evaluations</a>
+            <a href="#skills" class="nav-link"><span class="nav-num">04</span>Capabilities</a>
+            <a href="#publications" class="nav-link"><span class="nav-num">05</span>Citations</a>
+            <a href="#contact" class="nav-link nav-link-cta"><span class="nav-num">06</span>Contact</a>
+        </nav>
+        <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false">
+            <span></span><span></span>
+        </button>
+    </header>
 
-    <!-- About Section -->
-    <section id="about" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Get to know me</span>
-                <h2 class="section-title">About Me</h2>
-            </div>
-            <div class="about-content">
-                <div class="about-main">
-                    <div class="about-card glass-card">
-                        <div class="about-text">
-                            <p class="lead-text">
-                                Hey, I'm <strong>Mihir Chauhan</strong>; a Data Science grad student at CU Boulder who turns caffeine and curiosity into AI systems that actually work.
-                            </p>
-                            <p>
-                                From building <strong>CloudSense</strong> (an AI code review platform) to an <strong>AI Interview Coach</strong> that's probably better at interviews than I am. I love shipping things end to end. Most recently, I've been doing research at <strong>CU Anschutz</strong>, working on clinical NLP and getting LLMs to generate medical infographics (because doctors deserve nice visuals too).
-                            </p>
-                            <p>
-                                When I'm not wrangling ML pipelines or deploying stuff to the cloud, you'll find me on the football pitch pretending I'm prime Messi, hiking Colorado trails, or vibe coding at 2 AM with lo-fi beats on. My superpower? Taking a messy, complex idea and turning it into a clean, scalable system and actually finishing it.
-                            </p>
+    <main id="top">
+
+        <!-- ===== HERO / MODEL CARD ===== -->
+        <section class="hero" aria-label="Introduction">
+            <div class="wrap">
+                <p class="hero-eyebrow mono">TECHNICAL SPECIFICATION · HUMAN, GENERALLY CAPABLE</p>
+                <h1 class="hero-name">Mihir<br>Chauhan</h1>
+
+                <div class="hero-grid">
+                    <div class="spec-card" id="spec-card">
+                        <div class="spec-row">
+                            <span class="spec-key mono">CLASS</span>
+                            <span class="spec-val">ML / AI Engineer — production systems, end to end</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key mono">TRAINING</span>
+                            <span class="spec-val">M.S. Data Science, CU Boulder · GPA 3.96 · May 2026</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key mono">MODALITIES</span>
+                            <span class="spec-val">LLM evaluation · Multi-agent systems · RAG · MLOps · AWS</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key mono">DEPLOYED AT</span>
+                            <span class="spec-val">CU Anschutz · Honda 99P Labs · Kobeyo</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key mono">LOCATION</span>
+                            <span class="spec-val">Denver metro, Colorado</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-key mono">STATUS</span>
+                            <span class="spec-val"><span class="dot" aria-hidden="true"></span>Open to ML / AI engineering roles</span>
                         </div>
                     </div>
-                    <div class="about-info">
-                        <div class="info-card glass-card">
-                            <i class="fas fa-map-marker-alt"></i>
-                            <div>
-                                <h4>Location</h4>
-                                <p>Boulder, Colorado</p>
-                            </div>
+
+                    <div class="hero-photo-wrap">
+                        <img src="Images/mihir.jpg" alt="Portrait of Mihir Chauhan" class="hero-photo">
+                        <span class="photo-caption mono">FIG. 1 — THE SYSTEM IN QUESTION</span>
+                    </div>
+                </div>
+
+                <div class="hero-actions">
+                    <a href="#projects" class="btn btn-primary">Inspect evaluations</a>
+                    <a href="assets/Mihir_Chauhan_Resume.pdf" download class="btn btn-ghost">Download resume<span class="mono btn-suffix">.PDF</span></a>
+                    <div class="hero-links">
+                        <a href="https://github.com/Mihirchauhan0709" target="_blank" rel="noopener noreferrer" class="mono text-link">GITHUB ↗</a>
+                        <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer" class="mono text-link">LINKEDIN ↗</a>
+                    </div>
+                </div>
+            </div>
+            <div class="ruler" aria-hidden="true"></div>
+        </section>
+
+        <!-- ===== BENCHMARKS STRIP ===== -->
+        <section class="bench" aria-label="Key numbers">
+            <div class="wrap bench-grid">
+                <div class="bench-item">
+                    <span class="bench-num" data-count="3.96" data-decimals="2">0</span>
+                    <span class="bench-label mono">GPA · M.S. DATA SCIENCE</span>
+                </div>
+                <div class="bench-item">
+                    <span class="bench-num"><span data-count="96.5" data-decimals="1">0</span>%</span>
+                    <span class="bench-label mono">CV MODEL ACCURACY · PUBLISHED</span>
+                </div>
+                <div class="bench-item">
+                    <span class="bench-num"><span data-count="4">0</span>+</span>
+                    <span class="bench-label mono">PRODUCTION SYSTEMS SHIPPED</span>
+                </div>
+                <div class="bench-item">
+                    <span class="bench-num"><span data-count="15">0</span>+</span>
+                    <span class="bench-label mono">REST ENDPOINTS PER PLATFORM</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 01 OVERVIEW ===== -->
+        <section id="overview" class="section">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="sec-num mono">§ 01</span>
+                    <h2 class="sec-title">Overview</h2>
+                </header>
+                <div class="overview-grid">
+                    <div class="overview-text reveal">
+                        <p class="lead">I build AI systems that survive contact with production — from rubric-based LLM evaluation pipelines in clinical workflows to multi-agent platforms running on AWS ECS Fargate.</p>
+                        <p>Right now I'm a research intern at <strong>CU Anschutz (LARK Lab)</strong>, designing evaluation pipelines and guardrails for LLM outputs in clinical annotation, and building LLM-driven infographic generation pipelines. Before that I shipped a multi-agent debate engine for <strong>Honda 99P Labs</strong> and a self-improving BERT MLOps pipeline at <strong>Kobeyo</strong>.</p>
+                        <p>Off the clock: football (pretending I'm prime Messi), Colorado trails, and vibe coding at 2 AM with lo-fi on. My specialty is taking a messy, complex idea, turning it into a clean scalable system — and actually finishing it.</p>
+                    </div>
+                    <aside class="overview-aside reveal">
+                        <h3 class="aside-title mono">CURRENTLY LEARNING</h3>
+                        <ul class="learn-list">
+                            <li>Kubernetes</li>
+                            <li>LangGraph &amp; agent runtimes</li>
+                            <li>Model Context Protocol (MCP)</li>
+                            <li>PyTorch internals</li>
+                            <li>AI coding tools</li>
+                        </ul>
+                    </aside>
+                </div>
+            </div>
+        </section>
+
+        <!-- ===== 02 TRAINING RUN (EXPERIENCE) ===== -->
+        <section id="experience" class="section section-alt">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="sec-num mono">§ 02</span>
+                    <h2 class="sec-title">Training run</h2>
+                    <p class="sec-sub">Experience, logged in order. Most recent epoch first.</p>
+                </header>
+                <ol class="log" id="experience-log"><!-- populated by script.js --></ol>
+            </div>
+        </section>
+
+        <!-- ===== 03 EVALUATIONS (PROJECTS) ===== -->
+        <section id="projects" class="section">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="sec-num mono">§ 03</span>
+                    <h2 class="sec-title">Evaluations</h2>
+                    <p class="sec-sub">Selected systems, with the numbers they put up.</p>
+                </header>
+                <div class="evals" id="featured-projects"><!-- populated by script.js --></div>
+
+                <h3 class="subsec-title mono">ADDITIONAL RUNS</h3>
+                <div class="evals evals-compact" id="additional-projects"><!-- populated by script.js --></div>
+            </div>
+        </section>
+
+        <!-- ===== 04 CAPABILITIES (SKILLS) ===== -->
+        <section id="skills" class="section section-alt">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="sec-num mono">§ 04</span>
+                    <h2 class="sec-title">Capabilities</h2>
+                </header>
+                <div class="cap-matrix" id="skills-matrix"><!-- populated by script.js --></div>
+            </div>
+        </section>
+
+        <!-- ===== 05 CITATIONS (PUBLICATIONS) ===== -->
+        <section id="publications" class="section">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="sec-num mono">§ 05</span>
+                    <h2 class="sec-title">Citations</h2>
+                </header>
+                <div class="cites">
+                    <article class="cite reveal">
+                        <span class="cite-type mono">[PAPER]</span>
+                        <div class="cite-body">
+                            <h3 class="cite-title">Yoga Pose Detection and Correction</h3>
+                            <p class="cite-meta">Journal of Open Source Development and Technology (JOOSDT)</p>
+                            <p class="cite-desc">Pose detection using feedforward neural networks and Google MoveNet Thunder — 96.5% accuracy across 12 yoga poses, with real-time correction feedback.</p>
+                            <a class="text-link mono" href="https://journals.stmjournals.com/joosdt/article=2024/view=161704/" target="_blank" rel="noopener noreferrer">READ PAPER ↗</a>
                         </div>
-                        <div class="info-card glass-card">
-                            <i class="fas fa-graduation-cap"></i>
-                            <div>
-                                <h4>Education</h4>
-                                <p>MS Data Science, CU Boulder (May 2026)</p>
-                            </div>
+                    </article>
+                    <article class="cite reveal">
+                        <span class="cite-type mono">[BLOG]</span>
+                        <div class="cite-body">
+                            <h3 class="cite-title">Building a Real-Time Multi-Agent AI Debate Platform</h3>
+                            <p class="cite-meta">99P Labs — Medium</p>
+                            <p class="cite-desc">Technical write-up on architecting a real-time multi-agent debate system with LLMs: agent orchestration, streaming responses, and audience interaction.</p>
+                            <a class="text-link mono" href="https://medium.com/99p-labs/building-a-real-time-multi-agent-ai-debate-platform-b448dfaf6adc" target="_blank" rel="noopener noreferrer">READ BLOG ↗</a>
                         </div>
-                        <div class="info-card glass-card">
-                            <i class="fas fa-code"></i>
-                            <div>
-                                <h4>Specialization</h4>
-                                <p>AI/ML & Cloud Infrastructure</p>
-                            </div>
-                        </div>
-                        <div class="info-card glass-card resume-card">
-                            <i class="fas fa-file-pdf"></i>
-                            <div>
-                                <h4>Resume</h4>
-                                <a href="assets/Mihir_Chauhan_Resume.pdf" download class="resume-download-link">
-                                    <i class="fas fa-download"></i>
-                                    Download CV
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Currently Learning Section -->
-                <div class="currently-learning glass-card">
-                    <div class="learning-header">
-                        <i class="fas fa-book-reader"></i>
-                        <h3>Currently Learning</h3>
-                    </div>
-                    <div class="learning-tags" id="learning-tags">
-                        <!-- Learning tags will be dynamically loaded -->
-                    </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-        <!-- Skills Section -->
-    <section id="skills" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">What I work with</span>
-                <h2 class="section-title">Skills & Technologies</h2>
-            </div>
-            <div class="skills-marquee-container">
-                <div class="marquee-row" data-direction="left">
-                    <div class="marquee-label"><i class="fas fa-code"></i> Languages</div>
-                    <div class="marquee-track" id="languages-skills"></div>
-                </div>
-                <div class="marquee-row" data-direction="right">
-                    <div class="marquee-label"><i class="fas fa-brain"></i> ML / AI</div>
-                    <div class="marquee-track" id="ml-skills"></div>
-                </div>
-                <div class="marquee-row" data-direction="left">
-                    <div class="marquee-label"><i class="fas fa-chart-bar"></i> Data & Visualization</div>
-                    <div class="marquee-track" id="data-skills"></div>
-                </div>
-                <div class="marquee-row" data-direction="right">
-                    <div class="marquee-label"><i class="fas fa-database"></i> Databases & Tools</div>
-                    <div class="marquee-track" id="database-skills"></div>
-                </div>
-                <div class="marquee-row" data-direction="left">
-                    <div class="marquee-label"><i class="fas fa-cloud"></i> Cloud & DevOps</div>
-                    <div class="marquee-track" id="cloud-skills"></div>
-                </div>
-                <div class="marquee-row" data-direction="right">
-                    <div class="marquee-label"><i class="fas fa-laptop-code"></i> Web Development</div>
-                    <div class="marquee-track" id="web-skills"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience Section -->
-    <section id="experience" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">My professional journey</span>
-                <h2 class="section-title">Experience</h2>
-            </div>
-            <div class="timeline" id="experience-timeline">
-                <!-- Experience items will be dynamically loaded -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Section -->
-    <section id="projects" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Featured work</span>
-                <h2 class="section-title">Projects</h2>
-            </div>
-            
-            <!-- Featured Projects -->
-            <div class="projects-section">
-                <h3 class="projects-category-title">Featured Projects</h3>
-                <div class="projects-grid" id="featured-projects">
-                    <!-- Featured projects will be dynamically loaded -->
-                </div>
-            </div>
-            
-            <!-- Additional Projects -->
-            <div class="projects-section">
-                <h3 class="projects-category-title">Additional Projects</h3>
-                <div class="projects-grid additional-projects" id="additional-projects">
-                    <!-- Additional projects will be dynamically loaded -->
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Publications Section -->
-    <section id="publications" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Research & Publications</span>
-                <h2 class="section-title">Publications</h2>
-            </div>
-            <div class="publications-grid">
-                <article class="publication-card glass-card">
-                    <div class="publication-icon">
-                        <i class="fas fa-file-alt"></i>
-                    </div>
-                    <div class="publication-content">
-                        <h3 class="publication-title">Yoga Pose Detection and Correction</h3>
-                        <p class="publication-journal">Journal of Open Source Development and Technology (JOOSDT)</p>
-                        <p class="publication-description">
-                            Research paper detailing a pose detection model using Feedforward Neural Networks and Google MoveNet Thunder, achieving 96.5% accuracy across 12 yoga poses.
-                        </p>
-                        <a href="https://journals.stmjournals.com/joosdt/article=2024/view=161704/" 
-                           class="publication-link" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <span>Read Paper</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="publication-card glass-card">
-                    <div class="publication-icon">
-                        <i class="fab fa-medium"></i>
-                    </div>
-                    <div class="publication-content">
-                        <h3 class="publication-title">Building a Real-Time Multi-Agent AI Debate Platform</h3>
-                        <p class="publication-journal">99P Labs — Medium</p>
-                        <p class="publication-description">
-                            Technical blog on architecting a real-time multi-agent debate system using LLMs, covering agent orchestration, streaming responses, and interactive audience engagement.
-                        </p>
-                        <a href="https://medium.com/99p-labs/building-a-real-time-multi-agent-ai-debate-platform-b448dfaf6adc" 
-                           class="publication-link" 
-                           target="_blank" 
-                           rel="noopener noreferrer">
-                            <span>Read Blog</span>
-                            <i class="fas fa-external-link-alt"></i>
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-
-    <!-- Contact Section -->
-    <section id="contact" class="section">
-        <div class="container">
-            <div class="section-header">
-                <span class="section-label">Let's connect</span>
-                <h2 class="section-title">Get In Touch</h2>
-            </div>
-            <div class="contact-content">
-                <div class="contact-info">
-                    <div class="contact-card glass-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
+        <!-- ===== 06 INFERENCE (CONTACT) ===== -->
+        <section id="contact" class="section section-dark">
+            <div class="wrap">
+                <header class="sec-head">
+                    <span class="sec-num mono">§ 06</span>
+                    <h2 class="sec-title">Run inference</h2>
+                    <p class="sec-sub">Send a prompt. Median response latency: same day.</p>
+                </header>
+                <div class="contact-grid">
+                    <div class="contact-meta">
+                        <div class="meta-row">
+                            <span class="spec-key mono">EMAIL</span>
                             <a href="mailto:mihirchauhan951@gmail.com">mihirchauhan951@gmail.com</a>
                         </div>
-                    </div>
-                    <div class="contact-card glass-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-phone"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
+                        <div class="meta-row">
+                            <span class="spec-key mono">PHONE</span>
                             <a href="tel:+17208135491">+1 720-813-5491</a>
                         </div>
-                    </div>
-                    <div class="contact-card glass-card">
-                        <div class="contact-icon">
-                            <i class="fas fa-map-marker-alt"></i>
+                        <div class="meta-row">
+                            <span class="spec-key mono">LINKEDIN</span>
+                            <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer">in/mihirchauhan10 ↗</a>
                         </div>
-                        <div class="contact-details">
-                            <h3>Location</h3>
-                            <p>Boulder, Colorado</p>
-                        </div>
-                    </div>
-                    <div class="contact-card glass-card">
-                        <div class="contact-icon">
-                            <i class="fab fa-linkedin"></i>
-                        </div>
-                        <div class="contact-details">
-                            <h3>LinkedIn</h3>
-                            <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer">Connect on LinkedIn</a>
+                        <div class="meta-row">
+                            <span class="spec-key mono">GITHUB</span>
+                            <a href="https://github.com/Mihirchauhan0709" target="_blank" rel="noopener noreferrer">@Mihirchauhan0709 ↗</a>
                         </div>
                     </div>
+                    <form id="contact-form" class="contact-form" novalidate>
+                        <div class="form-group">
+                            <label for="name" class="mono">FROM_NAME</label>
+                            <input type="text" id="name" name="name" required placeholder="Your name" autocomplete="name">
+                        </div>
+                        <div class="form-group">
+                            <label for="email" class="mono">REPLY_TO</label>
+                            <input type="email" id="email" name="email" required placeholder="you@company.com" autocomplete="email">
+                        </div>
+                        <div class="form-group">
+                            <label for="message" class="mono">PROMPT</label>
+                            <textarea id="message" name="message" required placeholder="Tell me about the role, the problem, or the idea…" rows="6"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-light btn-submit">Send message →</button>
+                        <p class="form-status mono" id="form-status" role="status" aria-live="polite"></p>
+                    </form>
                 </div>
-                <form id="contact-form" class="contact-form glass-card">
-                    <h3 class="form-title">Send me a message</h3>
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input type="text" id="name" name="name" required placeholder="Your name">
-                    </div>
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" name="email" required placeholder="your.email@example.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="message">Message</label>
-                        <textarea id="message" name="message" required placeholder="Your message..." rows="5"></textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary btn-submit">
-                        <span>Send Message</span>
-                        <i class="fas fa-paper-plane"></i>
-                    </button>
-                </form>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
-    <!-- Footer -->
+    <!-- ===== FOOTER ===== -->
     <footer class="footer">
-        <div class="container">
-            <div class="footer-content">
-                <div class="footer-section">
-                    <div class="footer-logo">MC</div>
-                    <p>Building end-to-end AI systems from data pipelines to deployed products.</p>
-                    <div class="footer-social">
-                        <a href="https://github.com/Mihirchauhan0709" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <i class="fab fa-github"></i>
-                        </a>
-                        <a href="https://www.linkedin.com/in/mihirchauhan10/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <i class="fab fa-linkedin"></i>
-                        </a>
-                        <a href="https://mihirchauhan0709.github.io/chauhan-mihir/" target="_blank" rel="noopener noreferrer" aria-label="Portfolio">
-                            <i class="fas fa-globe"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <ul class="footer-links">
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="#publications">Publications</a></li>
-                    </ul>
-                </div>
-                <div class="footer-section">
-                    <h4>Contact</h4>
-                    <ul class="footer-contact">
-                        <li>
-                            <i class="fas fa-envelope"></i>
-                            <a href="mailto:mihirchauhan951@gmail.com">mihirchauhan951@gmail.com</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-phone"></i>
-                            <a href="tel:+17208135491">+1 720-813-5491</a>
-                        </li>
-                        <li>
-                            <i class="fas fa-map-marker-alt"></i>
-                            <span>Boulder, CO</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>&copy; 2026 Mihir Chauhan. All rights reserved.</p>
-                <p>Designed with <i class="fas fa-heart"></i> and built with modern web technologies</p>
-            </div>
+        <div class="wrap footer-grid">
+            <span class="mono">© 2026 MIHIR CHAUHAN</span>
+            <span class="mono footer-mid">BUILT BY HAND · NO TEMPLATE WAS HARMED</span>
+            <a href="#top" class="mono text-link">BACK TO TOP ↑</a>
         </div>
     </footer>
 
-    <!-- Back to Top Button -->
-    <button class="back-to-top" id="back-to-top" aria-label="Back to top">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Loading Screen -->
-    <div class="loading-screen" id="loading-screen">
-        <div class="loader">
-            <div class="loader-ring"></div>
-            <div class="loader-ring"></div>
-            <div class="loader-ring"></div>
-            <div class="loader-text">Loading...</div>
-        </div>
-    </div>
 </body>
 </html>
