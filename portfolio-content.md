@@ -12,7 +12,7 @@ Prefer concise bullets, strong action verbs, and quantified impact where availab
 **Role:** MS Data Science Graduate Student, University of Colorado Boulder (Expected May 2026)  
 **Email:** mihirchauhan951@gmail.com  
 **Phone:** +1 720-813-5491  
-**Portfolio:** https://mihirchauhan0709.github.io/chauhan-mihir/  
+**Portfolio:** https://chauhan-mihir.vercel.app/  
 **LinkedIn:** https://www.linkedin.com/in/mihirchauhan10/  
 
 ---
