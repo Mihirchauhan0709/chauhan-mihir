@@ -161,7 +161,7 @@ const data = {
         { group: 'ML / AI', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'LLM Evaluation', 'Prompt Engineering', 'RAG', 'Multi-Agent Systems', 'LangChain', 'NLP', 'Computer Vision'] },
         { group: 'DATA', items: ['Pandas', 'NumPy', 'Feature Engineering', 'EDA', 'Power BI', 'Tableau'] },
         { group: 'BACKEND & DATABASES', items: ['FastAPI', 'PostgreSQL', 'Redis', 'Supabase', 'MongoDB', 'REST APIs'] },
-        { group: 'CLOUD & DEVOPS', items: ['AWS (ECS Fargate, RDS, S3, CloudWatch, Secrets Manager)', 'Docker', 'Terraform', 'GCP', 'Azure', 'CI/CD'] },
+        { group: 'CLOUD & DEVOPS', items: ['AWS', 'ECS Fargate', 'RDS · S3', 'CloudWatch', 'Secrets Manager', 'Docker', 'Terraform', 'GCP', 'Azure', 'CI/CD'] },
         { group: 'WEB', items: ['React', 'Next.js', 'Node.js', 'HTML / CSS'] }
     ]
 };
