@@ -18,6 +18,8 @@
     --line-strong: #AFADA1;
     --dark: #131419;
     --dark-line: #2C2E36;
+    --cream: #F2F1EB;            /* constant — for on-dark surfaces in both themes */
+    --topbar-bg: rgba(242, 241, 235, 0.88);
 
     --font-display: 'Archivo', -apple-system, sans-serif;
     --font-mono: 'IBM Plex Mono', 'Consolas', monospace;
@@ -39,7 +41,34 @@ body {
     color: var(--ink);
 }
 
-::selection { background: var(--blue); color: #fff; }
+::selection { background: var(--blue); color: var(--paper); }
+
+/* ===== DARK THEME ===== */
+html[data-theme="dark"] {
+    --paper: #101116;
+    --surface: #16171D;
+    --ink: #E9E7DE;
+    --ink-soft: #B0B2B8;
+    --ink-mute: #71747C;
+    --blue: #8B96FF;
+    --blue-soft: rgba(139, 150, 255, 0.09);
+    --green: #34D399;
+    --line: #26272F;
+    --line-strong: #3A3C46;
+    --dark: #0B0C0F;
+    --dark-line: #26272F;
+    --topbar-bg: rgba(16, 17, 22, 0.88);
+}
+html.theme-anim body,
+html.theme-anim .topbar,
+html.theme-anim .section-alt,
+html.theme-anim .bench,
+html.theme-anim .eval-card,
+html.theme-anim .cite,
+html.theme-anim .overview-aside,
+html.theme-anim .mini-card {
+    transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease;
+}
 
 img { max-width: 100%; display: block; }
 a { color: inherit; }
@@ -121,9 +150,9 @@ a { color: inherit; }
 .btn-ghost:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); transform: translateY(-2px); }
 .btn-suffix { font-size: 0.7rem; opacity: 0.65; }
 .btn-light {
-    border-color: var(--paper);
-    color: var(--dark);
-    background: var(--paper);
+    border-color: var(--cream);
+    color: #131419;
+    background: var(--cream);
 }
 .btn-light:hover { background: var(--blue); border-color: var(--blue); color: #fff; }
 
@@ -138,7 +167,7 @@ a { color: inherit; }
     align-items: center;
     justify-content: space-between;
     padding: 0.85rem var(--pad);
-    background: rgba(242, 241, 235, 0.88);
+    background: var(--topbar-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid transparent;
@@ -280,6 +309,8 @@ a { color: inherit; }
     aspect-ratio: 4 / 4.6;
     object-fit: cover;
     border: 1px solid var(--line-strong);
+    transition: transform 0.25s ease;
+    will-change: transform;
 }
 .photo-caption {
     display: block;
@@ -709,10 +740,10 @@ a { color: inherit; }
    ===================================================== */
 .section-dark {
     background: var(--dark);
-    color: var(--paper);
+    color: var(--cream);
 }
 .section-dark .sec-sub { color: rgba(242, 241, 235, 0.6); }
-.section-dark ::selection { background: var(--paper); color: var(--dark); }
+.section-dark ::selection { background: var(--cream); color: #131419; }
 
 .contact-grid {
     display: grid;
@@ -721,7 +752,7 @@ a { color: inherit; }
     align-items: start;
 }
 
-.contact-meta { border-top: 2px solid var(--paper); }
+.contact-meta { border-top: 2px solid var(--cream); }
 .meta-row {
     display: grid;
     grid-template-columns: 110px 1fr;
@@ -751,7 +782,7 @@ a { color: inherit; }
 .form-group textarea {
     font-family: var(--font-display);
     font-size: 0.95rem;
-    color: var(--paper);
+    color: var(--cream);
     background: transparent;
     border: 1px solid var(--dark-line);
     padding: 0.85rem 1rem;
@@ -794,10 +825,197 @@ a { color: inherit; }
     letter-spacing: 0.08em;
 }
 .footer .text-link { color: rgba(242, 241, 235, 0.7); font-size: 0.66rem; }
-.footer .text-link:hover { color: var(--paper); border-bottom-color: var(--paper); }
+.footer .text-link:hover { color: var(--cream); border-bottom-color: var(--cream); }
 
 @media (max-width: 600px) {
     .footer-mid { display: none; }
+}
+
+/* =====================================================
+   BOOT SEQUENCE
+   ===================================================== */
+.boot {
+    position: fixed;
+    inset: 0;
+    z-index: 900;
+    background: var(--paper);
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.65s cubic-bezier(0.76, 0, 0.24, 1), visibility 0s 0.65s;
+}
+.boot.done { transform: translateY(-101%); visibility: hidden; }
+html.no-boot .boot { display: none; }
+body.booting { overflow: hidden; }
+
+.boot-inner {
+    width: 100%;
+    max-width: var(--wrap);
+    margin: 0 auto;
+    padding: 2.5rem var(--pad);
+}
+.boot-lines {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3em;
+    min-height: 6.5em;
+    font-size: 0.7rem;
+    letter-spacing: 0.06em;
+    color: var(--ink-mute);
+}
+.boot-lines .ok { color: var(--green); }
+.boot-meter { display: flex; align-items: center; gap: 1.2rem; margin-top: 1.4rem; }
+.boot-pct { font-size: 0.74rem; min-width: 4ch; color: var(--ink); }
+.boot-bar { flex: 1; height: 2px; background: var(--line); position: relative; overflow: hidden; }
+.boot-fill { position: absolute; top: 0; left: 0; bottom: 0; width: 0%; background: var(--blue); }
+
+/* =====================================================
+   CHROME — progress bar & grain
+   ===================================================== */
+.progress {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 2px;
+    background: var(--blue);
+    transform: scaleX(0);
+    transform-origin: 0 0;
+    z-index: 300;
+    pointer-events: none;
+}
+
+.grain {
+    position: fixed;
+    inset: 0;
+    z-index: 250;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/></filter><rect width='220' height='220' filter='url(%23n)'/></svg>");
+}
+html[data-theme="dark"] .grain { opacity: 0.07; }
+
+/* =====================================================
+   HERO NAME — split letters, kinetic type
+   ===================================================== */
+.hero-name .hn-line {
+    display: block;
+    overflow: hidden;
+    padding-bottom: 0.05em;
+    margin-bottom: -0.05em;
+}
+.hero-name .ch {
+    display: inline-block;
+    transform: translateY(118%);
+    transition: transform 0.85s cubic-bezier(0.22, 1, 0.36, 1);
+    transition-delay: var(--d, 0s);
+    will-change: transform;
+}
+body.booted .hero-name .ch { transform: translateY(0); }
+
+/* =====================================================
+   TOPBAR TOOLS — theme toggle
+   ===================================================== */
+.topbar-tools { display: flex; align-items: center; gap: 0.6rem; }
+.theme-btn {
+    font-size: 0.6rem;
+    font-weight: 500;
+    letter-spacing: 0.12em;
+    padding: 0.42rem 0.75rem;
+    border: 1px solid var(--line-strong);
+    background: transparent;
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+.theme-btn:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-soft); }
+
+/* =====================================================
+   MARQUEE
+   ===================================================== */
+.marquee {
+    overflow: hidden;
+    padding: 0.95rem 0;
+    border-bottom: 1px solid var(--line);
+    background: var(--paper);
+}
+.marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 2.75rem;
+    width: max-content;
+    animation: marquee 36s linear infinite;
+    will-change: transform;
+}
+.marquee:hover .marquee-track { animation-play-state: paused; }
+.marquee-track span {
+    font-size: 0.7rem;
+    letter-spacing: 0.16em;
+    color: var(--ink-mute);
+    white-space: nowrap;
+}
+.marquee-track i {
+    width: 7px; height: 7px;
+    background: var(--blue);
+    transform: rotate(45deg);
+    flex-shrink: 0;
+}
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* =====================================================
+   CONTACT — oversized CTA
+   ===================================================== */
+.contact-big {
+    display: block;
+    text-decoration: none;
+    margin-bottom: clamp(2.5rem, 7vh, 4.5rem);
+}
+.contact-big-line {
+    display: block;
+    font-stretch: 122%;
+    font-weight: 850;
+    font-size: clamp(2.4rem, 8vw, 5.8rem);
+    line-height: 0.98;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(242, 241, 235, 0.8);
+    transition: color 0.3s ease;
+}
+.contact-big:hover .contact-big-line,
+.contact-big:focus-visible .contact-big-line { color: var(--cream); }
+@supports not (-webkit-text-stroke: 1px black) {
+    .contact-big-line { color: var(--cream); }
+}
+.contact-big-arrow {
+    display: inline-block;
+    color: #8B96FF;
+    -webkit-text-stroke: 0;
+    transition: transform 0.3s ease;
+}
+.contact-big:hover .contact-big-arrow { transform: translateX(0.18em); }
+
+/* Floating "EMAIL ME" pill that trails the pointer over the CTA */
+.cta-tip {
+    position: fixed;
+    top: 0; left: 0;
+    z-index: 600;
+    pointer-events: none;
+}
+.cta-tip-inner {
+    display: inline-block;
+    transform: translate(16px, -36px) scale(0.7);
+    padding: 0.5em 1em;
+    border-radius: 999px;
+    background: var(--blue);
+    color: #fff;
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    white-space: nowrap;
+    opacity: 0;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+.cta-tip.on .cta-tip-inner {
+    opacity: 1;
+    transform: translate(16px, -36px) scale(1);
 }
 
 /* =====================================================
@@ -811,6 +1029,9 @@ a { color: inherit; }
         transition-duration: 0.01ms !important;
     }
     .reveal, .spec-row { opacity: 1; transform: none; }
+    .hero-name .ch { transform: none !important; }
+    .marquee-track { animation: none; }
+    .boot { display: none; }
 }
 
 /* =====================================================
@@ -818,6 +1039,7 @@ a { color: inherit; }
    ===================================================== */
 @media print {
     .topbar, .menu-btn, .contact-form, .footer { display: none; }
+    .boot, .grain, .progress, .marquee, .contact-big { display: none; }
     body { background: #fff; color: #000; }
     .section-dark { background: #fff; color: #000; }
 }

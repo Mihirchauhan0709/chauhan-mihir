@@ -25,6 +25,40 @@
     <link rel="shortcut icon" href="favicon/favicon.ico">
     <link rel="apple-touch-icon" sizes="180x180" href="favicon/apple-touch-icon.png">
     <link rel="manifest" href="favicon/site.webmanifest">
+    <meta name="theme-color" content="#F2F1EB">
+
+    <!-- Structured data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "Person",
+        "name": "Mihir Chauhan",
+        "jobTitle": "ML / AI Engineer",
+        "email": "mailto:mihirchauhan951@gmail.com",
+        "url": "https://mihirchauhan0709.github.io/chauhan-mihir/",
+        "sameAs": [
+            "https://github.com/Mihirchauhan0709",
+            "https://www.linkedin.com/in/mihirchauhan10/"
+        ],
+        "alumniOf": {
+            "@type": "CollegeOrUniversity",
+            "name": "University of Colorado Boulder"
+        },
+        "knowsAbout": ["Machine Learning", "LLM Evaluation", "Multi-Agent Systems", "RAG", "MLOps", "AWS"],
+        "address": { "@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO" }
+    }
+    </script>
+
+    <!-- Theme (before paint, no flash) -->
+    <script>
+        (function () {
+            try {
+                var t = localStorage.getItem('mc-theme')
+                    || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+                document.documentElement.setAttribute('data-theme', t);
+            } catch (e) { /* default light */ }
+        })();
+    </script>
 
     <!-- Styles & Scripts -->
     <link rel="stylesheet" href="style.css">
@@ -48,6 +82,22 @@
 </head>
 <body>
 
+    <!-- ===== BOOT SEQUENCE ===== -->
+    <div class="boot" id="boot" aria-hidden="true">
+        <div class="boot-inner mono">
+            <div class="boot-lines" id="boot-lines"></div>
+            <div class="boot-meter">
+                <span class="boot-pct" id="boot-pct">0%</span>
+                <span class="boot-bar"><span class="boot-fill" id="boot-fill"></span></span>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== CHROME: progress / grain / CTA tooltip ===== -->
+    <span class="progress" id="progress" aria-hidden="true"></span>
+    <div class="grain" aria-hidden="true"></div>
+    <span class="cta-tip" id="cta-tip" aria-hidden="true"><span class="cta-tip-inner mono">EMAIL ME →</span></span>
+
     <!-- ===== TOP BAR ===== -->
     <header class="topbar" id="topbar">
         <a class="topbar-id" href="#top">
@@ -62,9 +112,12 @@
             <a href="#publications" class="nav-link"><span class="nav-num">05</span>Publications</a>
             <a href="#contact" class="nav-link nav-link-cta"><span class="nav-num">06</span>Contact</a>
         </nav>
-        <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false">
-            <span></span><span></span>
-        </button>
+        <div class="topbar-tools">
+            <button class="theme-btn mono" id="theme-btn" aria-label="Toggle dark mode" aria-pressed="false">DARK</button>
+            <button class="menu-btn" id="menu-btn" aria-label="Open menu" aria-expanded="false">
+                <span></span><span></span>
+            </button>
+        </div>
     </header>
 
     <main id="top">
@@ -72,8 +125,8 @@
         <!-- ===== HERO / MODEL CARD ===== -->
         <section class="hero" aria-label="Introduction">
             <div class="wrap">
-                <p class="hero-eyebrow mono">TECHNICAL SPECIFICATION · HUMAN, GENERALLY CAPABLE</p>
-                <h1 class="hero-name">Mihir<br>Chauhan</h1>
+                <p class="hero-eyebrow mono" data-scramble>TECHNICAL SPECIFICATION · HUMAN, GENERALLY CAPABLE</p>
+                <h1 class="hero-name" id="hero-name" aria-label="Mihir Chauhan">Mihir<br>Chauhan</h1>
 
                 <div class="hero-grid">
                     <div class="spec-card" id="spec-card">
@@ -143,11 +196,24 @@
             </div>
         </section>
 
+        <!-- ===== MARQUEE ===== -->
+        <div class="marquee" aria-hidden="true">
+            <div class="marquee-track mono" id="marquee-track">
+                <span>LLM EVALUATION</span><i></i>
+                <span>MULTI-AGENT SYSTEMS</span><i></i>
+                <span>RAG PIPELINES</span><i></i>
+                <span>MLOPS</span><i></i>
+                <span>AWS · ECS FARGATE</span><i></i>
+                <span>PROMPT ENGINEERING</span><i></i>
+                <span>SHIPS TO PRODUCTION</span><i></i>
+            </div>
+        </div>
+
         <!-- ===== 01 OVERVIEW ===== -->
         <section id="overview" class="section">
             <div class="wrap">
                 <header class="sec-head">
-                    <span class="sec-num mono">§ 01</span>
+                    <span class="sec-num mono" data-scramble>§ 01</span>
                     <h2 class="sec-title">Overview</h2>
                 </header>
                 <div class="overview-grid">
@@ -174,7 +240,7 @@
         <section id="experience" class="section section-alt">
             <div class="wrap">
                 <header class="sec-head">
-                    <span class="sec-num mono">§ 02</span>
+                    <span class="sec-num mono" data-scramble>§ 02</span>
                     <h2 class="sec-title">Experience</h2>
                     <p class="sec-sub">Most recent first. Status tags are accurate.</p>
                 </header>
@@ -186,7 +252,7 @@
         <section id="projects" class="section">
             <div class="wrap">
                 <header class="sec-head">
-                    <span class="sec-num mono">§ 03</span>
+                    <span class="sec-num mono" data-scramble>§ 03</span>
                     <h2 class="sec-title">Projects</h2>
                     <p class="sec-sub">Selected systems — with proof where it exists, and none invented where it doesn't.</p>
                 </header>
@@ -201,7 +267,7 @@
         <section id="skills" class="section section-alt">
             <div class="wrap">
                 <header class="sec-head">
-                    <span class="sec-num mono">§ 04</span>
+                    <span class="sec-num mono" data-scramble>§ 04</span>
                     <h2 class="sec-title">Skills</h2>
                 </header>
                 <div class="cap-matrix" id="skills-matrix"><!-- populated by script.js --></div>
@@ -212,7 +278,7 @@
         <section id="publications" class="section">
             <div class="wrap">
                 <header class="sec-head">
-                    <span class="sec-num mono">§ 05</span>
+                    <span class="sec-num mono" data-scramble>§ 05</span>
                     <h2 class="sec-title">Publications</h2>
                 </header>
                 <div class="cites">
@@ -242,10 +308,14 @@
         <section id="contact" class="section section-dark">
             <div class="wrap">
                 <header class="sec-head">
-                    <span class="sec-num mono">§ 06</span>
+                    <span class="sec-num mono" data-scramble>§ 06</span>
                     <h2 class="sec-title">Contact</h2>
                     <p class="sec-sub">Recruiting, collaborating, or just talking systems — my inbox is open.</p>
                 </header>
+                <a href="mailto:mihirchauhan951@gmail.com" class="contact-big">
+                    <span class="contact-big-line">Let's build</span>
+                    <span class="contact-big-line">something real <span class="contact-big-arrow">→</span></span>
+                </a>
                 <div class="contact-grid">
                     <div class="contact-meta">
                         <div class="meta-row">
@@ -290,7 +360,7 @@
     <footer class="footer">
         <div class="wrap footer-grid">
             <span class="mono">© 2026 MIHIR CHAUHAN</span>
-            <span class="mono footer-mid">DENVER METRO, COLORADO · DESIGNED &amp; BUILT BY HAND</span>
+            <span class="mono footer-mid">DESIGNED &amp; BUILT BY HAND · DENVER <span id="local-time">--:--:--</span></span>
             <a href="#top" class="mono text-link">BACK TO TOP ↑</a>
         </div>
     </footer>

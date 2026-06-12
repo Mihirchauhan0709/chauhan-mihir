@@ -396,15 +396,256 @@ function setupForm() {
     });
 }
 
+// ===== AWARD LAYER =====
+const finePointer = window.matchMedia('(pointer: fine)').matches;
+
+// Boot sequence — once per session, skipped for reduced motion
+function runBoot(onDone) {
+    const boot = document.getElementById('boot');
+    const skip = reducedMotion || sessionStorage.getItem('mc-booted');
+    if (!boot || skip) {
+        if (boot) boot.remove();
+        document.body.classList.add('booted');
+        onDone();
+        return;
+    }
+    document.body.classList.add('booting');
+    const linesEl = document.getElementById('boot-lines');
+    const pctEl = document.getElementById('boot-pct');
+    const fillEl = document.getElementById('boot-fill');
+    const lines = [
+        'MIHIR.CHAUHAN — SYSTEM INIT',
+        'LOADING WEIGHTS ............. <span class="ok">OK</span>',
+        'CALIBRATING TYPE ............ <span class="ok">OK</span>',
+        'MOUNTING PROJECTS ........... <span class="ok">OK</span>',
+        'HUMAN VERIFIED .............. <span class="ok">OK</span>'
+    ];
+    lines.forEach((l, i) => setTimeout(() => {
+        const div = document.createElement('div');
+        div.innerHTML = l;
+        linesEl.appendChild(div);
+    }, 120 + i * 170));
+
+    const dur = 1250;
+    const t0 = performance.now();
+    const tick = now => {
+        const p = Math.min((now - t0) / dur, 1);
+        const eased = 1 - Math.pow(1 - p, 2);
+        pctEl.textContent = Math.round(eased * 100) + '%';
+        fillEl.style.width = (eased * 100) + '%';
+        if (p < 1) { requestAnimationFrame(tick); return; }
+        sessionStorage.setItem('mc-booted', '1');
+        boot.classList.add('done');
+        document.body.classList.remove('booting');
+        document.body.classList.add('booted');
+        setTimeout(() => boot.remove(), 750);
+        onDone();
+    };
+    requestAnimationFrame(tick);
+}
+
+// Split hero name into letters for staggered entrance + kinetic type
+function splitHeroName() {
+    const h1 = document.getElementById('hero-name');
+    if (!h1) return;
+    let idx = 0;
+    h1.innerHTML = ['Mihir', 'Chauhan'].map(word =>
+        `<span class="hn-line" aria-hidden="true">${[...word].map(c =>
+            `<span class="ch" style="--d:${(idx++ * 0.035).toFixed(3)}s">${c}</span>`).join('')}</span>`
+    ).join('');
+}
+
+// Variable-font letters respond to cursor proximity (Archivo wght/wdth axes)
+function setupKineticName() {
+    if (reducedMotion || !finePointer) return;
+    const hero = document.querySelector('.hero');
+    const chars = [...document.querySelectorAll('#hero-name .ch')];
+    if (!hero || !chars.length) return;
+    let raf = null, mx = 0, my = 0;
+    const RADIUS = 220;
+    const update = () => {
+        raf = null;
+        chars.forEach(ch => {
+            const r = ch.getBoundingClientRect();
+            const d = Math.hypot(mx - (r.left + r.width / 2), my - (r.top + r.height / 2));
+            const t = Math.max(0, 1 - d / RADIUS);
+            ch.style.fontVariationSettings = t > 0.01
+                ? `'wght' ${(850 - 330 * t).toFixed(0)}, 'wdth' ${(125 - 45 * t).toFixed(1)}`
+                : '';
+        });
+    };
+    hero.addEventListener('pointermove', e => {
+        mx = e.clientX; my = e.clientY;
+        if (!raf) raf = requestAnimationFrame(update);
+    });
+    hero.addEventListener('pointerleave', () => {
+        chars.forEach(ch => { ch.style.fontVariationSettings = ''; });
+    });
+}
+
+// "EMAIL ME" pill trails the pointer over the big contact CTA
+function setupCtaTip() {
+    if (!finePointer) return;
+    const cta = document.querySelector('.contact-big');
+    const tip = document.getElementById('cta-tip');
+    if (!cta || !tip) return;
+    cta.addEventListener('pointermove', e => {
+        tip.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+    }, { passive: true });
+    cta.addEventListener('pointerenter', () => tip.classList.add('on'));
+    cta.addEventListener('pointerleave', () => tip.classList.remove('on'));
+}
+
+// Decode/scramble effect on labels as they enter the viewport
+function setupScramble() {
+    const els = document.querySelectorAll('[data-scramble]');
+    if (!els.length || reducedMotion || !('IntersectionObserver' in window)) return;
+    const CHARS = '█▓▒░<>/[]{}=+*#01';
+    const scramble = el => {
+        const text = el.textContent;
+        const dur = 650;
+        const t0 = performance.now();
+        const tick = now => {
+            const p = Math.min((now - t0) / dur, 1);
+            const settled = Math.floor(p * text.length);
+            el.textContent = [...text].map((c, i) =>
+                i < settled || c === ' ' ? c : CHARS[Math.random() * CHARS.length | 0]).join('');
+            if (p < 1) requestAnimationFrame(tick);
+            else el.textContent = text;
+        };
+        requestAnimationFrame(tick);
+    };
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) { scramble(e.target); obs.unobserve(e.target); }
+        });
+    }, { threshold: 0.6 });
+    els.forEach(el => obs.observe(el));
+}
+
+// Reading progress bar (native scrolling everywhere else)
+function setupScrolling() {
+    const progress = document.getElementById('progress');
+    if (!progress) return;
+    let raf = null;
+    const updateProgress = () => {
+        raf = null;
+        const max = document.documentElement.scrollHeight - innerHeight;
+        progress.style.transform = `scaleX(${max > 0 ? Math.min(scrollY / max, 1) : 0})`;
+    };
+    window.addEventListener('scroll', () => {
+        if (!raf) raf = requestAnimationFrame(updateProgress);
+    }, { passive: true });
+    updateProgress();
+}
+
+// Duplicate marquee content for a seamless -50% loop
+function setupMarquee() {
+    const track = document.getElementById('marquee-track');
+    if (track) track.innerHTML += track.innerHTML;
+}
+
+// Magnetic pull on buttons
+function setupMagnetic() {
+    if (reducedMotion || !finePointer) return;
+    document.querySelectorAll('.btn, .theme-btn').forEach(el => {
+        el.addEventListener('pointermove', e => {
+            const r = el.getBoundingClientRect();
+            const dx = e.clientX - (r.left + r.width / 2);
+            const dy = e.clientY - (r.top + r.height / 2);
+            el.style.transform = `translate(${dx * 0.16}px, ${dy * 0.3}px)`;
+        });
+        el.addEventListener('pointerleave', () => { el.style.transform = ''; });
+    });
+}
+
+// Subtle 3D tilt on the hero photo
+function setupTilt() {
+    if (reducedMotion || !finePointer) return;
+    const wrap = document.querySelector('.hero-photo-wrap');
+    const img = document.querySelector('.hero-photo');
+    if (!wrap || !img) return;
+    wrap.addEventListener('pointermove', e => {
+        const r = wrap.getBoundingClientRect();
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        img.style.transform = `perspective(700px) rotateY(${(px * 6).toFixed(2)}deg) rotateX(${(-py * 6).toFixed(2)}deg)`;
+    });
+    wrap.addEventListener('pointerleave', () => { img.style.transform = ''; });
+}
+
+// Dark / light toggle, persisted
+function setupTheme() {
+    const btn = document.getElementById('theme-btn');
+    const meta = document.querySelector('meta[name="theme-color"]');
+    if (!btn) return;
+    const root = document.documentElement;
+    const apply = (mode, animate) => {
+        if (animate) {
+            root.classList.add('theme-anim');
+            setTimeout(() => root.classList.remove('theme-anim'), 400);
+        }
+        root.setAttribute('data-theme', mode);
+        btn.textContent = mode === 'dark' ? 'LIGHT' : 'DARK';
+        btn.setAttribute('aria-pressed', String(mode === 'dark'));
+        if (meta) meta.setAttribute('content', mode === 'dark' ? '#101116' : '#F2F1EB');
+    };
+    apply(root.getAttribute('data-theme') || 'light', false);
+    btn.addEventListener('click', () => {
+        const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+        try { localStorage.setItem('mc-theme', next); } catch (e) { /* private mode */ }
+        apply(next, true);
+    });
+}
+
+// Live Denver clock in the footer
+function setupClock() {
+    const el = document.getElementById('local-time');
+    if (!el) return;
+    const fmt = new Intl.DateTimeFormat('en-US', {
+        timeZone: 'America/Denver', hour12: false,
+        hour: '2-digit', minute: '2-digit', second: '2-digit'
+    });
+    const tick = () => { el.textContent = fmt.format(new Date()); };
+    tick();
+    setInterval(tick, 1000);
+}
+
+function consoleEgg() {
+    console.log(
+        '%c MIHIR.CHAUHAN %c You opened the console — clearly we should talk.\n' +
+        '%c → mihirchauhan951@gmail.com · github.com/Mihirchauhan0709',
+        'background:#1828CE;color:#F2F1EB;font-weight:bold;padding:4px 8px;',
+        'color:inherit;padding:4px 0;',
+        'color:#1828CE;padding:2px 0;'
+    );
+}
+
 // ===== INIT =====
 document.addEventListener('DOMContentLoaded', () => {
     renderExperience();
     renderFeatured();
     renderAdditional();
     renderSkills();
-    setupReveals();
-    setupSpecCard();
-    setupCounters();
+    splitHeroName();
+
+    setupTheme();
     setupNav();
     setupForm();
+    setupMarquee();
+    setupClock();
+    setupScrolling();
+    setupCtaTip();
+    setupMagnetic();
+    setupTilt();
+    setupKineticName();
+    consoleEgg();
+
+    // Choreography that should wait for the boot screen to lift
+    runBoot(() => {
+        setupSpecCard();
+        setupReveals();
+        setupCounters();
+        setupScramble();
+    });
 });
