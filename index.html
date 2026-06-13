@@ -9,16 +9,24 @@
     <meta name="author" content="Mihir Chauhan">
 
     <!-- Open Graph / Social Media -->
-    <meta property="og:type" content="website">
+    <meta property="og:type" content="profile">
+    <meta property="profile:first_name" content="Mihir">
+    <meta property="profile:last_name" content="Chauhan">
+    <meta property="og:site_name" content="Mihir Chauhan — Portfolio">
+    <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Mihir Chauhan — ML / AI Engineer">
     <meta property="og:description" content="Production AI systems: LLM evaluation, multi-agent platforms, RAG pipelines, MLOps, and AWS infrastructure.">
     <meta property="og:url" content="https://chauhan-mihir.vercel.app/">
+    <meta property="og:image" content="https://chauhan-mihir.vercel.app/Images/mihir-web.jpg">
+    <meta property="og:image:alt" content="Portrait of Mihir Chauhan, ML / AI Engineer">
     <link rel="canonical" href="https://chauhan-mihir.vercel.app/">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Mihir Chauhan — ML / AI Engineer">
     <meta name="twitter:description" content="Production AI systems: LLM evaluation, multi-agent platforms, RAG pipelines, MLOps, and AWS infrastructure.">
+    <meta name="twitter:image" content="https://chauhan-mihir.vercel.app/Images/mihir-web.jpg">
+    <meta name="twitter:image:alt" content="Portrait of Mihir Chauhan, ML / AI Engineer">
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="96x96" href="favicon/favicon-96x96.png">
@@ -32,21 +40,54 @@
     <script type="application/ld+json">
     {
         "@context": "https://schema.org",
-        "@type": "Person",
-        "name": "Mihir Chauhan",
-        "jobTitle": "ML / AI Engineer",
-        "email": "mailto:mihirchauhan951@gmail.com",
-        "url": "https://chauhan-mihir.vercel.app/",
-        "sameAs": [
-            "https://github.com/Mihirchauhan0709",
-            "https://www.linkedin.com/in/mihirchauhan10/"
-        ],
-        "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "University of Colorado Boulder"
-        },
-        "knowsAbout": ["Machine Learning", "LLM Evaluation", "Multi-Agent Systems", "RAG", "MLOps", "AWS"],
-        "address": { "@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO" }
+        "@graph": [
+            {
+                "@type": "Person",
+                "@id": "https://chauhan-mihir.vercel.app/#person",
+                "name": "Mihir Chauhan",
+                "givenName": "Mihir",
+                "familyName": "Chauhan",
+                "jobTitle": "ML / AI Engineer",
+                "description": "ML/AI engineer building production AI systems: LLM evaluation pipelines, multi-agent systems, RAG, MLOps, and cloud-native infrastructure. M.S. Data Science at CU Boulder.",
+                "email": "mailto:mihirchauhan951@gmail.com",
+                "url": "https://chauhan-mihir.vercel.app/",
+                "image": "https://chauhan-mihir.vercel.app/Images/mihir-web.jpg",
+                "sameAs": [
+                    "https://github.com/Mihirchauhan0709",
+                    "https://www.linkedin.com/in/mihirchauhan10/",
+                    "https://medium.com/@mihirchauhan951"
+                ],
+                "alumniOf": {
+                    "@type": "CollegeOrUniversity",
+                    "name": "University of Colorado Boulder",
+                    "sameAs": "https://www.colorado.edu/"
+                },
+                "worksFor": {
+                    "@type": "Organization",
+                    "name": "CU Anschutz — LARK Lab, Dept. of Biomedical Informatics"
+                },
+                "knowsAbout": [
+                    "Machine Learning", "LLM Evaluation", "Multi-Agent Systems", "RAG",
+                    "MLOps", "AWS", "Prompt Engineering", "Clinical NLP", "Python"
+                ],
+                "address": { "@type": "PostalAddress", "addressLocality": "Denver", "addressRegion": "CO", "addressCountry": "US" }
+            },
+            {
+                "@type": "WebSite",
+                "@id": "https://chauhan-mihir.vercel.app/#website",
+                "url": "https://chauhan-mihir.vercel.app/",
+                "name": "Mihir Chauhan — Portfolio",
+                "publisher": { "@id": "https://chauhan-mihir.vercel.app/#person" }
+            },
+            {
+                "@type": "ProfilePage",
+                "@id": "https://chauhan-mihir.vercel.app/#profilepage",
+                "url": "https://chauhan-mihir.vercel.app/",
+                "name": "Mihir Chauhan — ML / AI Engineer",
+                "isPartOf": { "@id": "https://chauhan-mihir.vercel.app/#website" },
+                "mainEntity": { "@id": "https://chauhan-mihir.vercel.app/#person" }
+            }
+        ]
     }
     </script>
 
@@ -158,7 +199,7 @@
                     </div>
 
                     <div class="hero-photo-wrap">
-                        <img src="Images/mihir.jpg" alt="Portrait of Mihir Chauhan" class="hero-photo">
+                        <img src="Images/mihir-web.jpg" alt="Portrait of Mihir Chauhan, ML / AI Engineer based in Denver, Colorado" class="hero-photo" fetchpriority="high" width="1467" height="1100">
                         <span class="photo-caption mono">FIG. 1 — THE SYSTEM IN QUESTION</span>
                     </div>
                 </div>
@@ -246,6 +287,15 @@
                     <p class="sec-sub">Most recent first. Status tags are accurate.</p>
                 </header>
                 <ol class="log" id="experience-log"><!-- populated by script.js --></ol>
+                <noscript>
+                    <ul>
+                        <li><strong>Research Intern — CU Anschutz, LARK Lab</strong> (Jan 2026–present): LLM evaluation pipelines and guardrails for clinical annotation; LLM-driven clinical infographic generation.</li>
+                        <li><strong>AI Engineer (Capstone) — Honda 99P Labs</strong> (2025): multi-agent debate engine with RAG, FastAPI, AWS ECS Fargate.</li>
+                        <li><strong>Junior Data Scientist Intern — Kobeyo</strong> (2025): BERT MLOps pipeline with human-in-the-loop feedback; cut query time 50%.</li>
+                        <li><strong>Data Science Intern — CodSoft</strong> (2023): applied ML projects end to end.</li>
+                    </ul>
+                    <p>Projects by Mihir Chauhan: AgentSquared (no-code AI agent platform), CodeSense (AI code review on AWS), AI Interview Coach (LLM interview simulation), Yoga Pose Detection (published, 96.5% accuracy).</p>
+                </noscript>
             </div>
         </section>
 
