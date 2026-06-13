@@ -190,11 +190,14 @@ a { color: inherit; }
     letter-spacing: 0.06em;
 }
 .topbar-mark {
-    width: 11px; height: 11px;
-    background: var(--blue);
-    transform: rotate(45deg);
+    display: block;
+    width: 24px;
+    color: var(--blue);
     flex-shrink: 0;
+    transition: color 0.2s ease;
 }
+.topbar-mark svg { display: block; width: 100%; height: auto; }
+.topbar-id:hover .topbar-mark { color: var(--ink); }
 
 .topbar-nav { display: flex; gap: 0.25rem; }
 
