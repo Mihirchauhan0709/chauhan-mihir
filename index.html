@@ -64,10 +64,6 @@
                     "name": "University of Colorado Boulder",
                     "sameAs": "https://www.colorado.edu/"
                 },
-                "worksFor": {
-                    "@type": "Organization",
-                    "name": "CU Anschutz — LARK Lab, Dept. of Biomedical Informatics"
-                },
                 "knowsAbout": [
                     "Machine Learning", "LLM Evaluation", "Multi-Agent Systems", "RAG",
                     "MLOps", "AWS", "Prompt Engineering", "Clinical NLP", "Python"
@@ -125,6 +121,8 @@
     <script defer src="/_vercel/speed-insights/script.js"></script>
 </head>
 <body>
+
+    <a class="skip-link mono" href="#top">SKIP TO MAIN CONTENT →</a>
 
     <!-- ===== BOOT SEQUENCE ===== -->
     <div class="boot" id="boot" aria-hidden="true">
@@ -206,7 +204,11 @@
                     </div>
 
                     <div class="hero-photo-wrap">
-                        <img src="Images/mihir-web.jpg" alt="Portrait of Mihir Chauhan, ML / AI Engineer based in Denver, Colorado" class="hero-photo" fetchpriority="high">
+                        <picture>
+                            <source srcset="Images/mihir-web.avif" type="image/avif">
+                            <source srcset="Images/mihir-web.webp" type="image/webp">
+                            <img src="Images/mihir-web.jpg" alt="Portrait of Mihir Chauhan, ML / AI Engineer based in Denver, Colorado" class="hero-photo" fetchpriority="high">
+                        </picture>
                         <span class="photo-caption mono">FIG. 1 — THE SYSTEM IN QUESTION</span>
                     </div>
                 </div>
@@ -268,7 +270,7 @@
                 <div class="overview-grid">
                     <div class="overview-text reveal">
                         <p class="lead">I build AI systems that survive contact with production — from rubric-based LLM evaluation pipelines in clinical workflows to multi-agent platforms running on AWS ECS Fargate.</p>
-                        <p>Right now I'm a research intern at <strong>CU Anschutz (LARK Lab)</strong>, designing evaluation pipelines and guardrails for LLM outputs in clinical annotation, and building LLM-driven infographic generation pipelines. Before that I shipped a multi-agent debate engine for <strong>Honda 99P Labs</strong> and a self-improving BERT MLOps pipeline at <strong>Kobeyo</strong>.</p>
+                        <p>Most recently I was a research intern at <strong>CU Anschutz (LARK Lab)</strong> through May 2026, designing evaluation pipelines and guardrails for LLM outputs in clinical annotation, and building LLM-driven infographic generation pipelines. Before that I shipped a multi-agent debate engine for <strong>Honda 99P Labs</strong> and a self-improving BERT MLOps pipeline at <strong>Kobeyo</strong>.</p>
                         <p>Off the clock: football (pretending I'm prime Messi), Colorado trails, and vibe coding at 2 AM with lo-fi on. My specialty is taking a messy, complex idea, turning it into a clean scalable system — and actually finishing it.</p>
                     </div>
                     <aside class="overview-aside reveal">
@@ -296,7 +298,7 @@
                 <ol class="log" id="experience-log"><!-- populated by script.js --></ol>
                 <noscript>
                     <ul>
-                        <li><strong>Research Intern — CU Anschutz, LARK Lab</strong> (Jan 2026–present): LLM evaluation pipelines and guardrails for clinical annotation; LLM-driven clinical infographic generation.</li>
+                        <li><strong>Research Intern — CU Anschutz, LARK Lab</strong> (Jan 2026–May 2026): LLM evaluation pipelines and guardrails for clinical annotation; LLM-driven clinical infographic generation.</li>
                         <li><strong>AI Engineer (Capstone) — Honda 99P Labs</strong> (2025): multi-agent debate engine with RAG, FastAPI, AWS ECS Fargate.</li>
                         <li><strong>Junior Data Scientist Intern — Kobeyo</strong> (2025): BERT MLOps pipeline with human-in-the-loop feedback; cut query time 50%.</li>
                         <li><strong>Data Science Intern — CodSoft</strong> (2023): applied ML projects end to end.</li>
@@ -378,7 +380,10 @@
                     <div class="contact-meta">
                         <div class="meta-row">
                             <span class="spec-key mono">EMAIL</span>
-                            <a href="mailto:mihirchauhan951@gmail.com">mihirchauhan951@gmail.com</a>
+                            <span class="meta-email">
+                                <a href="mailto:mihirchauhan951@gmail.com">mihirchauhan951@gmail.com</a>
+                                <button type="button" class="copy-btn mono" id="copy-email" data-email="mihirchauhan951@gmail.com" aria-label="Copy email address to clipboard">COPY</button>
+                            </span>
                         </div>
                         <div class="meta-row">
                             <span class="spec-key mono">PHONE</span>

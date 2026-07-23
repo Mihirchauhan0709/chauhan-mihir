@@ -9,8 +9,8 @@ const data = {
     experience: [
         {
             id: 'RUN-05',
-            status: 'running',
-            date: 'JAN 2026 — PRESENT',
+            status: 'complete',
+            date: 'JAN 2026 — MAY 2026',
             role: 'Research Intern',
             org: 'CU Anschutz · LARK Lab, Dept. of Biomedical Informatics',
             loc: 'Aurora, CO',
@@ -598,6 +598,25 @@ function setupTheme() {
     });
 }
 
+// Copy email address to clipboard
+function setupCopyEmail() {
+    const btn = document.getElementById('copy-email');
+    if (!btn || !navigator.clipboard) return;
+    let timer;
+    btn.addEventListener('click', async () => {
+        try {
+            await navigator.clipboard.writeText(btn.dataset.email);
+            btn.textContent = 'COPIED ✓';
+            btn.classList.add('copied');
+            clearTimeout(timer);
+            timer = setTimeout(() => {
+                btn.textContent = 'COPY';
+                btn.classList.remove('copied');
+            }, 1800);
+        } catch (e) { /* clipboard unavailable — mailto link still works */ }
+    });
+}
+
 // Live Denver clock in the footer
 function setupClock() {
     const el = document.getElementById('local-time');
@@ -634,6 +653,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setupForm();
     setupMarquee();
     setupClock();
+    setupCopyEmail();
     setupScrolling();
     setupCtaTip();
     setupMagnetic();

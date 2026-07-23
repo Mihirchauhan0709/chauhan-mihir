@@ -10,7 +10,7 @@
     --surface: #FBFAF6;
     --ink: #16181D;
     --ink-soft: #4B4F57;
-    --ink-mute: #8B8E94;
+    --ink-mute: #686B72;   /* ≥4.5:1 on paper (WCAG AA, small text) */
     --blue: #1828CE;
     --blue-soft: rgba(24, 40, 206, 0.07);
     --green: #0B8A4F;
@@ -50,7 +50,7 @@ html[data-theme="dark"] {
     --surface: #16171D;
     --ink: #E9E7DE;
     --ink-soft: #B0B2B8;
-    --ink-mute: #71747C;
+    --ink-mute: #7E828B;   /* ≥4.5:1 on dark paper (WCAG AA, small text) */
     --blue: #8B96FF;
     --blue-soft: rgba(139, 150, 255, 0.09);
     --green: #34D399;
@@ -77,6 +77,25 @@ a { color: inherit; }
 :focus-visible {
     outline: 2px solid var(--blue);
     outline-offset: 3px;
+}
+
+/* ===== SKIP LINK — visually hidden until focused ===== */
+.skip-link {
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 300;
+    padding: 0.7rem 1.1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    background: var(--ink);
+    color: var(--paper);
+    text-decoration: none;
+    transform: translateY(-200%);
+}
+.skip-link:focus-visible {
+    transform: translateY(0);
 }
 
 .mono { font-family: var(--font-mono); }
@@ -769,7 +788,7 @@ a { color: inherit; }
     border-bottom: 1px solid var(--dark-line);
     align-items: baseline;
 }
-.meta-row .spec-key { color: rgba(242, 241, 235, 0.45); }
+.meta-row .spec-key { color: rgba(242, 241, 235, 0.58); } /* ≥4.5:1 on dark panel */
 .meta-row a {
     text-decoration: none;
     font-weight: 500;
@@ -778,6 +797,26 @@ a { color: inherit; }
     word-break: break-word;
 }
 .meta-row a:hover { color: #8B96FF; }
+
+.meta-email {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+}
+.copy-btn {
+    font-size: 0.62rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.25rem 0.55rem;
+    background: transparent;
+    color: rgba(242, 241, 235, 0.58);
+    border: 1px solid var(--dark-line);
+    cursor: pointer;
+    transition: color 0.15s ease, border-color 0.15s ease;
+}
+.copy-btn:hover { color: var(--cream); border-color: var(--cream); }
+.copy-btn.copied { color: #34D399; border-color: #34D399; }
 
 .contact-form { display: flex; flex-direction: column; gap: 1.2rem; }
 .form-group { display: flex; flex-direction: column; gap: 0.45rem; }
